@@ -1,27 +1,29 @@
 package com.laoge.raining.server.boot;
 
+import com.laoge.raining.server.config.RainAutoConfiguration;
 import com.laoge.raining.server.config.RainThreadFactory;
 import org.apache.thrift.server.TServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
 
 /**
  * 系统启动加载项
  * Created by yuhou on 2017/9/12.
  */
 @Configuration
-@ConditionalOnBean(TServer.class)
+@AutoConfigureAfter(RainAutoConfiguration.class)
 public class RainServerBootstrap implements SmartLifecycle {
 
     private final static Logger logger = LoggerFactory.getLogger(RainServerBootstrap.class);
 
     private RainThreadFactory rainFactory = new RainThreadFactory("thrift-sever-start");
 
-    @Autowired
+    @Resource
     private TServer tServer;
 
     private int phase = Integer.MAX_VALUE;
@@ -34,6 +36,7 @@ public class RainServerBootstrap implements SmartLifecycle {
 
     @Override
     public void stop(Runnable runnable) {
+
         if (isRunning()) {
             tServer.setShouldStop(true);
             tServer.stop();
@@ -45,6 +48,7 @@ public class RainServerBootstrap implements SmartLifecycle {
 
     @Override
     public void start() {
+
         if (tServer == null) {
             return;
         }
@@ -54,11 +58,13 @@ public class RainServerBootstrap implements SmartLifecycle {
 
     @Override
     public void stop() {
+
         stop(null);
     }
 
     @Override
     public boolean isRunning() {
+
         if (tServer != null) {
 
             return tServer.isServing();
@@ -68,6 +74,7 @@ public class RainServerBootstrap implements SmartLifecycle {
 
     @Override
     public int getPhase() {
+
         return this.phase;
     }
 
