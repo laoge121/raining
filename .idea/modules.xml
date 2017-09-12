@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/rain-server/rain-server.iml" filepath="$PROJECT_DIR$/rain-server/rain-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/raining.iml" filepath="$PROJECT_DIR$/raining.iml" />
+    </modules>
+  </component>
+</project>
