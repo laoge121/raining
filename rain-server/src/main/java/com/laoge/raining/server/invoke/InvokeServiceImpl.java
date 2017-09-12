@@ -27,12 +27,9 @@ public class InvokeServiceImpl implements InvokeService.Iface {
         if (StringUtils.isEmpty(path)) {
             throw new RuntimeException("路径参数异常!");
         }
-        String className = path.substring(path.lastIndexOf("."), path.length());
-
+        String className = path.substring(path.lastIndexOf(".") + 1, path.length());
+        className = className.substring(0, 1).toLowerCase() + className.substring(1, className.length());
         Object object = BeanUtil.getBean(className);
-
-        //将json数据进转化
-        Map<String, Object> param = GsonUtils.getInstance().fromJson(paramJson, Map.class);
 
         Method[] methods = object.getClass().getMethods();
         Method method = null;
@@ -41,14 +38,17 @@ public class InvokeServiceImpl implements InvokeService.Iface {
                 method = m;
             }
         }
-        Object[] args = new Object[methods.length];
         Parameter[] parameters = method.getParameters();
-        int i = 0;
-        for (Parameter parameter : parameters) {
-            args[i] = param.get(parameter.getName());
-            i++;
+        Object[] args = new Object[parameters.length];
+        if (null != parameters && parameters.length > 0) {
+            //将json数据进转化
+            Map<String, Object> param = GsonUtils.getInstance().fromJson(paramJson, Map.class);
+            int i = 0;
+            for (Parameter parameter : parameters) {
+                args[i] = param.get(parameter.getName());
+                i++;
+            }
         }
-
         try {
             Object result = this.invokeMethod(object, methodName, args);
 

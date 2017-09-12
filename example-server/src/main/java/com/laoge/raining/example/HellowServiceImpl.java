@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
 public class HellowServiceImpl implements HellowService {
     @Override
     public String sayHello() {
-        return null;
+        return "哈哈哈哈哈";
     }
 }
