@@ -39,13 +39,13 @@ public class InvokeService {
 
   public interface Iface {
 
-    public String invoke(long callTime, String code, String path, String method, String paramJson) throws TException;
+    public String invoke(long callTime, String code, String path, String methodName, String paramJson) throws TException;
 
   }
 
   public interface AsyncIface {
 
-    public void invoke(long callTime, String code, String path, String method, String paramJson, AsyncMethodCallback resultHandler) throws TException;
+    public void invoke(long callTime, String code, String path, String methodName, String paramJson, AsyncMethodCallback resultHandler) throws TException;
 
   }
 
@@ -69,19 +69,19 @@ public class InvokeService {
       super(iprot, oprot);
     }
 
-    public String invoke(long callTime, String code, String path, String method, String paramJson) throws TException
+    public String invoke(long callTime, String code, String path, String methodName, String paramJson) throws TException
     {
-      send_invoke(callTime, code, path, method, paramJson);
+      send_invoke(callTime, code, path, methodName, paramJson);
       return recv_invoke();
     }
 
-    public void send_invoke(long callTime, String code, String path, String method, String paramJson) throws TException
+    public void send_invoke(long callTime, String code, String path, String methodName, String paramJson) throws TException
     {
       invoke_args args = new invoke_args();
       args.setCallTime(callTime);
       args.setCode(code);
       args.setPath(path);
-      args.setMethod(method);
+      args.setMethodName(methodName);
       args.setParamJson(paramJson);
       sendBase("invoke", args);
     }
@@ -114,9 +114,9 @@ public class InvokeService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void invoke(long callTime, String code, String path, String method, String paramJson, AsyncMethodCallback resultHandler) throws TException {
+    public void invoke(long callTime, String code, String path, String methodName, String paramJson, AsyncMethodCallback resultHandler) throws TException {
       checkReady();
-      invoke_call method_call = new invoke_call(callTime, code, path, method, paramJson, resultHandler, this, ___protocolFactory, ___transport);
+      invoke_call method_call = new invoke_call(callTime, code, path, methodName, paramJson, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
@@ -125,14 +125,14 @@ public class InvokeService {
       private long callTime;
       private String code;
       private String path;
-      private String method;
+      private String methodName;
       private String paramJson;
-      public invoke_call(long callTime, String code, String path, String method, String paramJson, AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws TException {
+      public invoke_call(long callTime, String code, String path, String methodName, String paramJson, AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.callTime = callTime;
         this.code = code;
         this.path = path;
-        this.method = method;
+        this.methodName = methodName;
         this.paramJson = paramJson;
       }
 
@@ -142,7 +142,7 @@ public class InvokeService {
         args.setCallTime(callTime);
         args.setCode(code);
         args.setPath(path);
-        args.setMethod(method);
+        args.setMethodName(methodName);
         args.setParamJson(paramJson);
         args.write(prot);
         prot.writeMessageEnd();
@@ -190,7 +190,7 @@ public class InvokeService {
 
       public invoke_result getResult(I iface, invoke_args args) throws TException {
         invoke_result result = new invoke_result();
-        result.success = iface.invoke(args.callTime, args.code, args.path, args.method, args.paramJson);
+        result.success = iface.invoke(args.callTime, args.code, args.path, args.methodName, args.paramJson);
         return result;
       }
     }
@@ -259,7 +259,7 @@ public class InvokeService {
       }
 
       public void start(I iface, invoke_args args, AsyncMethodCallback<String> resultHandler) throws TException {
-        iface.invoke(args.callTime, args.code, args.path, args.method, args.paramJson,resultHandler);
+        iface.invoke(args.callTime, args.code, args.path, args.methodName, args.paramJson,resultHandler);
       }
     }
 
@@ -271,7 +271,7 @@ public class InvokeService {
     private static final org.apache.thrift.protocol.TField CALL_TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("callTime", org.apache.thrift.protocol.TType.I64, (short)1);
     private static final org.apache.thrift.protocol.TField CODE_FIELD_DESC = new org.apache.thrift.protocol.TField("code", org.apache.thrift.protocol.TType.STRING, (short)2);
     private static final org.apache.thrift.protocol.TField PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("path", org.apache.thrift.protocol.TType.STRING, (short)3);
-    private static final org.apache.thrift.protocol.TField METHOD_FIELD_DESC = new org.apache.thrift.protocol.TField("method", org.apache.thrift.protocol.TType.STRING, (short)4);
+    private static final org.apache.thrift.protocol.TField METHOD_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("methodName", org.apache.thrift.protocol.TType.STRING, (short)4);
     private static final org.apache.thrift.protocol.TField PARAM_JSON_FIELD_DESC = new org.apache.thrift.protocol.TField("paramJson", org.apache.thrift.protocol.TType.STRING, (short)5);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
@@ -283,7 +283,7 @@ public class InvokeService {
     public long callTime; // required
     public String code; // required
     public String path; // required
-    public String method; // required
+    public String methodName; // required
     public String paramJson; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -291,7 +291,7 @@ public class InvokeService {
       CALL_TIME((short)1, "callTime"),
       CODE((short)2, "code"),
       PATH((short)3, "path"),
-      METHOD((short)4, "method"),
+      METHOD_NAME((short)4, "methodName"),
       PARAM_JSON((short)5, "paramJson");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -313,8 +313,8 @@ public class InvokeService {
             return CODE;
           case 3: // PATH
             return PATH;
-          case 4: // METHOD
-            return METHOD;
+          case 4: // METHOD_NAME
+            return METHOD_NAME;
           case 5: // PARAM_JSON
             return PARAM_JSON;
           default:
@@ -368,7 +368,7 @@ public class InvokeService {
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.PATH, new org.apache.thrift.meta_data.FieldMetaData("path", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.METHOD, new org.apache.thrift.meta_data.FieldMetaData("method", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+      tmpMap.put(_Fields.METHOD_NAME, new org.apache.thrift.meta_data.FieldMetaData("methodName", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.PARAM_JSON, new org.apache.thrift.meta_data.FieldMetaData("paramJson", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
@@ -383,7 +383,7 @@ public class InvokeService {
       long callTime,
       String code,
       String path,
-      String method,
+      String methodName,
       String paramJson)
     {
       this();
@@ -391,7 +391,7 @@ public class InvokeService {
       setCallTimeIsSet(true);
       this.code = code;
       this.path = path;
-      this.method = method;
+      this.methodName = methodName;
       this.paramJson = paramJson;
     }
 
@@ -407,8 +407,8 @@ public class InvokeService {
       if (other.isSetPath()) {
         this.path = other.path;
       }
-      if (other.isSetMethod()) {
-        this.method = other.method;
+      if (other.isSetMethodName()) {
+        this.methodName = other.methodName;
       }
       if (other.isSetParamJson()) {
         this.paramJson = other.paramJson;
@@ -425,7 +425,7 @@ public class InvokeService {
       this.callTime = 0;
       this.code = null;
       this.path = null;
-      this.method = null;
+      this.methodName = null;
       this.paramJson = null;
     }
 
@@ -500,27 +500,27 @@ public class InvokeService {
       }
     }
 
-    public String getMethod() {
-      return this.method;
+    public String getMethodName() {
+      return this.methodName;
     }
 
-    public invoke_args setMethod(String method) {
-      this.method = method;
+    public invoke_args setMethodName(String methodName) {
+      this.methodName = methodName;
       return this;
     }
 
-    public void unsetMethod() {
-      this.method = null;
+    public void unsetMethodName() {
+      this.methodName = null;
     }
 
-    /** Returns true if field method is set (has been assigned a value) and false otherwise */
-    public boolean isSetMethod() {
-      return this.method != null;
+    /** Returns true if field methodName is set (has been assigned a value) and false otherwise */
+    public boolean isSetMethodName() {
+      return this.methodName != null;
     }
 
-    public void setMethodIsSet(boolean value) {
+    public void setMethodNameIsSet(boolean value) {
       if (!value) {
-        this.method = null;
+        this.methodName = null;
       }
     }
 
@@ -574,11 +574,11 @@ public class InvokeService {
         }
         break;
 
-      case METHOD:
+      case METHOD_NAME:
         if (value == null) {
-          unsetMethod();
+          unsetMethodName();
         } else {
-          setMethod((String)value);
+          setMethodName((String)value);
         }
         break;
 
@@ -604,8 +604,8 @@ public class InvokeService {
       case PATH:
         return getPath();
 
-      case METHOD:
-        return getMethod();
+      case METHOD_NAME:
+        return getMethodName();
 
       case PARAM_JSON:
         return getParamJson();
@@ -627,8 +627,8 @@ public class InvokeService {
         return isSetCode();
       case PATH:
         return isSetPath();
-      case METHOD:
-        return isSetMethod();
+      case METHOD_NAME:
+        return isSetMethodName();
       case PARAM_JSON:
         return isSetParamJson();
       }
@@ -675,12 +675,12 @@ public class InvokeService {
           return false;
       }
 
-      boolean this_present_method = true && this.isSetMethod();
-      boolean that_present_method = true && that.isSetMethod();
-      if (this_present_method || that_present_method) {
-        if (!(this_present_method && that_present_method))
+      boolean this_present_methodName = true && this.isSetMethodName();
+      boolean that_present_methodName = true && that.isSetMethodName();
+      if (this_present_methodName || that_present_methodName) {
+        if (!(this_present_methodName && that_present_methodName))
           return false;
-        if (!this.method.equals(that.method))
+        if (!this.methodName.equals(that.methodName))
           return false;
       }
 
@@ -715,10 +715,10 @@ public class InvokeService {
       if (present_path)
         list.add(path);
 
-      boolean present_method = true && (isSetMethod());
-      list.add(present_method);
-      if (present_method)
-        list.add(method);
+      boolean present_methodName = true && (isSetMethodName());
+      list.add(present_methodName);
+      if (present_methodName)
+        list.add(methodName);
 
       boolean present_paramJson = true && (isSetParamJson());
       list.add(present_paramJson);
@@ -766,12 +766,12 @@ public class InvokeService {
           return lastComparison;
         }
       }
-      lastComparison = Boolean.valueOf(isSetMethod()).compareTo(other.isSetMethod());
+      lastComparison = Boolean.valueOf(isSetMethodName()).compareTo(other.isSetMethodName());
       if (lastComparison != 0) {
         return lastComparison;
       }
-      if (isSetMethod()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.method, other.method);
+      if (isSetMethodName()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.methodName, other.methodName);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -826,11 +826,11 @@ public class InvokeService {
       }
       first = false;
       if (!first) sb.append(", ");
-      sb.append("method:");
-      if (this.method == null) {
+      sb.append("methodName:");
+      if (this.methodName == null) {
         sb.append("null");
       } else {
-        sb.append(this.method);
+        sb.append(this.methodName);
       }
       first = false;
       if (!first) sb.append(", ");
@@ -910,10 +910,10 @@ public class InvokeService {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 4: // METHOD
+            case 4: // METHOD_NAME
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.method = iprot.readString();
-                struct.setMethodIsSet(true);
+                struct.methodName = iprot.readString();
+                struct.setMethodNameIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
@@ -954,9 +954,9 @@ public class InvokeService {
           oprot.writeString(struct.path);
           oprot.writeFieldEnd();
         }
-        if (struct.method != null) {
-          oprot.writeFieldBegin(METHOD_FIELD_DESC);
-          oprot.writeString(struct.method);
+        if (struct.methodName != null) {
+          oprot.writeFieldBegin(METHOD_NAME_FIELD_DESC);
+          oprot.writeString(struct.methodName);
           oprot.writeFieldEnd();
         }
         if (struct.paramJson != null) {
@@ -991,7 +991,7 @@ public class InvokeService {
         if (struct.isSetPath()) {
           optionals.set(2);
         }
-        if (struct.isSetMethod()) {
+        if (struct.isSetMethodName()) {
           optionals.set(3);
         }
         if (struct.isSetParamJson()) {
@@ -1007,8 +1007,8 @@ public class InvokeService {
         if (struct.isSetPath()) {
           oprot.writeString(struct.path);
         }
-        if (struct.isSetMethod()) {
-          oprot.writeString(struct.method);
+        if (struct.isSetMethodName()) {
+          oprot.writeString(struct.methodName);
         }
         if (struct.isSetParamJson()) {
           oprot.writeString(struct.paramJson);
@@ -1032,8 +1032,8 @@ public class InvokeService {
           struct.setPathIsSet(true);
         }
         if (incoming.get(3)) {
-          struct.method = iprot.readString();
-          struct.setMethodIsSet(true);
+          struct.methodName = iprot.readString();
+          struct.setMethodNameIsSet(true);
         }
         if (incoming.get(4)) {
           struct.paramJson = iprot.readString();
