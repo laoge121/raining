@@ -7,14 +7,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 线程工厂
  * Created by yuhou on 2017/9/12.
  */
-public class RainFactory implements ThreadFactory {
+public class RainThreadFactory implements ThreadFactory {
 
     private static final AtomicInteger poolNumber = new AtomicInteger(1);
     private final ThreadGroup group;
     private final AtomicInteger threadNumber = new AtomicInteger(1);
     private final String namePrefix;
 
-    RainFactory(String name) {
+    public RainThreadFactory(String name) {
         SecurityManager s = System.getSecurityManager();
 
         group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();

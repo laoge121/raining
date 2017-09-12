@@ -93,7 +93,7 @@ public class RainAutoConfiguration implements ApplicationContextAware {
 
     public ExecutorService createInvokerPool() {
         ExecutorService executorService = new ThreadPoolExecutor(rainServerProperties.getMaxWorker(), rainServerProperties.getMaxWorker(),
-                60, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(rainServerProperties.getWorkQueueCapacity()), new RainFactory("rain-server"));
+                60, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(rainServerProperties.getWorkQueueCapacity()), new RainThreadFactory("rain-server"));
 
         return executorService;
     }
