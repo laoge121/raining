@@ -1,0 +1,4 @@
+2017-09-12 14:58:23,771 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 5856 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-12 14:58:23,772 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-12 14:58:23,773 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-12 14:58:25,373 INFO (StartupInfoLogger.java:57)- Started Application in 17.022 seconds (JVM running for 18.092)
