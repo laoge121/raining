@@ -1,7 +1,9 @@
 package com.laoge.raining.server.invoke;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Lists;
 import com.laoge.raining.server.util.BeanUtil;
-import com.laoge.raining.server.util.GsonUtils;
+import com.laoge.raining.server.util.JacksonUtil;
 import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,57 +34,37 @@ public class InvokeServiceImpl implements InvokeService.Iface {
         className = className.substring(0, 1).toLowerCase() + className.substring(1, className.length());
         Object object = BeanUtil.getBean(className);
 
-        Method[] methods = object.getClass().getMethods();
-        Method method = null;
-        for (Method m : methods) {
-            if (m.getName().equals(methodName)) {
-                method = m;
+        JsonNode jsonNode = null;
+        Class[] args = null;
+        List<Object> paramList = Lists.newArrayList();
+        try {
+
+            jsonNode = JacksonUtil.getMapper().readTree(paramJson);
+
+            Iterator<Map.Entry<String, JsonNode>> iterator = jsonNode.fields();
+            for (; iterator.hasNext(); ) {
+                Map.Entry<String, JsonNode> map = iterator.next();
+                Object obj = JacksonUtil.json2Bean(map.getValue().toString(), Class.forName(map.getKey()));
+                paramList.add(obj);
             }
-        }
-        Parameter[] parameters = method.getParameters();
-        Object[] args = new Object[parameters.length];
-        if (null != parameters && parameters.length > 0) {
-            //将json数据进转化
-            Map<String, Object> param = GsonUtils.getInstance().fromJson(paramJson, Map.class);
+            args = new Class[paramList.size()];
             int i = 0;
-            for (Parameter parameter : parameters) {
-                args[i] = param.get(parameter.getName());
+            for (Object ob : paramList) {
+                args[i] = ob.getClass();
                 i++;
             }
+        } catch (Exception e) {
+            logger.error("解析数据异常!", e);
         }
-        try {
-            Object result = this.invokeMethod(object, methodName, args);
 
-            return GsonUtils.object2Json(result);
+        try {
+
+            Method method = object.getClass().getMethod(methodName, args);
+            Object result = method.invoke(object, paramList.toArray());
+            return JacksonUtil.bean2Json(result);
         } catch (Exception e) {
             logger.error("方法执行异常{}", e);
             throw new RuntimeException(e);
         }
     }
-
-    /**
-     * 执行特地的方法
-     *
-     * @param owner
-     * @param methodName
-     * @param args
-     * @return
-     * @throws Exception
-     */
-    public Object invokeMethod(Object owner, String methodName, Object[] args) throws Exception {
-
-        Class ownerClass = owner.getClass();
-
-        Class[] argsClass = new Class[args.length];
-
-        for (int i = 0, j = args.length; i < j; i++) {
-            argsClass[i] = args[i].getClass();
-        }
-
-        Method method = ownerClass.getMethod(methodName, argsClass);
-
-        return method.invoke(owner, args);
-    }
-
-
 }

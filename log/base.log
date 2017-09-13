@@ -1,77 +1,170 @@
-2017-09-12 14:58:23,771 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 5856 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 14:58:23,772 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 14:58:23,773 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 14:58:25,373 INFO (StartupInfoLogger.java:57)- Started Application in 17.022 seconds (JVM running for 18.092)
-2017-09-12 15:00:18,548 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 5918 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:00:18,549 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:00:18,549 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:00:20,148 INFO (StartupInfoLogger.java:57)- Started Application in 17.062 seconds (JVM running for 18.242)
-2017-09-12 15:03:46,090 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 5988 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:03:46,090 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:03:46,091 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:03:47,795 INFO (StartupInfoLogger.java:57)- Started Application in 17.704 seconds (JVM running for 19.83)
-2017-09-12 15:05:30,910 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6017 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:05:30,911 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:05:30,911 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:05:32,467 INFO (StartupInfoLogger.java:57)- Started Application in 16.984 seconds (JVM running for 18.174)
-2017-09-12 15:07:40,303 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6054 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:07:40,304 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:07:40,305 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:07:42,288 ERROR (RainAutoConfiguration.java:49)- <<><><><RainAutoConfiguration><><><><
-2017-09-12 15:07:43,121 INFO (StartupInfoLogger.java:57)- Started Application in 18.369 seconds (JVM running for 19.73)
-2017-09-12 15:09:47,620 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6102 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:09:47,620 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:09:47,621 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:09:48,894 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:09:49,850 INFO (StartupInfoLogger.java:57)- Started Application in 17.77 seconds (JVM running for 19.023)
-2017-09-12 15:11:51,425 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6135 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:11:51,426 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:11:51,427 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:11:52,565 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:11:53,109 INFO (StartupInfoLogger.java:57)- Started Application in 17.584 seconds (JVM running for 19.133)
-2017-09-12 15:12:39,337 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6156 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:12:39,338 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:12:39,338 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:12:40,479 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:12:41,127 INFO (StartupInfoLogger.java:57)- Started Application in 17.233 seconds (JVM running for 18.508)
-2017-09-12 15:15:14,997 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6197 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:15:14,998 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:15:14,999 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:15:16,486 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:15:17,089 INFO (StartupInfoLogger.java:57)- Started Application in 17.605 seconds (JVM running for 19.153)
-2017-09-12 15:19:56,894 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6272 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:19:56,895 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:19:56,895 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:19:57,931 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:19:58,404 INFO (StartupInfoLogger.java:57)- Started Application in 17.156 seconds (JVM running for 18.357)
-2017-09-12 15:23:09,616 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6346 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:23:09,618 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:23:09,618 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:23:10,844 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:23:11,486 INFO (StartupInfoLogger.java:57)- Started Application in 17.406 seconds (JVM running for 18.69)
-2017-09-12 15:24:58,593 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6387 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:24:58,594 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:24:58,595 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:24:59,691 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:25:00,294 ERROR (RainServerBootstrap.java:35)- <<<<isAutoStartup<>><
-2017-09-12 15:25:00,294 ERROR (RainServerBootstrap.java:86)- >>>getPhase>>>>>
-2017-09-12 15:25:00,297 ERROR (RainServerBootstrap.java:74)- >>>isRunning>>>>>
-2017-09-12 15:25:00,297 ERROR (RainServerBootstrap.java:35)- <<<<isAutoStartup<>><
-2017-09-12 15:25:00,298 ERROR (RainServerBootstrap.java:55)- >>>start>>>>>
-2017-09-12 15:25:00,299 INFO (RainServerBootstrap.java:102)- thrift server started!
-2017-09-12 15:25:00,322 INFO (StartupInfoLogger.java:57)- Started Application in 17.248 seconds (JVM running for 18.483)
-2017-09-12 15:26:57,180 ERROR (RainServerBootstrap.java:86)- >>>getPhase>>>>>
-2017-09-12 15:26:57,182 ERROR (RainServerBootstrap.java:74)- >>>isRunning>>>>>
-2017-09-12 15:26:57,183 ERROR (RainServerBootstrap.java:41)- <<<<stop<>><
-2017-09-12 15:26:57,183 ERROR (RainServerBootstrap.java:74)- >>>isRunning>>>>>
-2017-09-12 15:27:59,065 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 6445 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
-2017-09-12 15:27:59,066 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2017-09-12 15:27:59,067 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2017-09-12 15:28:01,088 ERROR (RainAutoConfiguration.java:106)- tServer>>>>>create >>>>>>>>>>
-2017-09-12 15:28:01,977 ERROR (RainServerBootstrap.java:34)- <<<<isAutoStartup<>><
-2017-09-12 15:28:01,977 ERROR (RainServerBootstrap.java:85)- >>>getPhase>>>>>
-2017-09-12 15:28:01,981 ERROR (RainServerBootstrap.java:73)- >>>isRunning>>>>>
-2017-09-12 15:28:01,982 ERROR (RainServerBootstrap.java:34)- <<<<isAutoStartup<>><
-2017-09-12 15:28:01,982 ERROR (RainServerBootstrap.java:54)- >>>start>>>>>
-2017-09-12 15:28:01,984 INFO (RainServerBootstrap.java:101)- thrift server started!
-2017-09-12 15:28:02,037 INFO (StartupInfoLogger.java:57)- Started Application in 18.551 seconds (JVM running for 19.985)
+2017-09-13 10:14:55,456 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 1336 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 10:14:55,459 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 10:14:55,460 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 10:14:58,472 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 10:14:58,494 INFO (StartupInfoLogger.java:57)- Started Application in 19.081 seconds (JVM running for 21.502)
+2017-09-13 10:29:48,712 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 1566 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 10:29:48,712 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 10:29:48,713 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 10:29:51,365 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 10:29:51,405 INFO (StartupInfoLogger.java:57)- Started Application in 18.477 seconds (JVM running for 20.098)
+2017-09-13 10:31:13,124 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 1597 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 10:31:13,124 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 10:31:13,125 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 10:31:16,814 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 10:31:16,835 INFO (StartupInfoLogger.java:57)- Started Application in 19.25 seconds (JVM running for 20.733)
+2017-09-13 10:32:35,575 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 1625 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 10:32:35,576 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 10:32:35,577 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 10:32:38,106 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 10:32:38,121 INFO (StartupInfoLogger.java:57)- Started Application in 18.331 seconds (JVM running for 19.409)
+2017-09-13 10:34:19,711 ERROR (InvokeServiceImpl.java:75)- 方法执行异常{}
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.laoge.raining.server.invoke.InvokeServiceImpl.invoke(InvokeServiceImpl.java:70)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:193)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:178)
+	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NullPointerException: null
+	at com.laoge.raining.example.HellowServiceImpl.sayHello(HellowServiceImpl.java:24)
+	... 14 common frames omitted
+2017-09-13 11:35:14,153 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 2409 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 11:35:14,154 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 11:35:14,157 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 11:35:17,727 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 11:35:17,758 INFO (StartupInfoLogger.java:57)- Started Application in 19.146 seconds (JVM running for 21.001)
+2017-09-13 11:35:35,512 ERROR (InvokeServiceImpl.java:58)- 解析数据异常{}
+com.fasterxml.jackson.databind.JsonMappingException: No content to map due to end-of-input
+ at [Source: ; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:270)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3838)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:3783)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2842)
+	at com.laoge.raining.server.util.JacksonUtil.json2Bean(JacksonUtil.java:99)
+	at com.laoge.raining.server.invoke.InvokeServiceImpl.invoke(InvokeServiceImpl.java:48)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:193)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:178)
+	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2017-09-13 11:38:24,939 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 2460 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 11:38:24,940 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 11:38:24,940 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 11:38:27,921 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 11:38:27,938 INFO (StartupInfoLogger.java:57)- Started Application in 18.665 seconds (JVM running for 19.741)
+2017-09-13 11:39:58,846 ERROR (InvokeServiceImpl.java:61)- 解析数据异常{}
+com.fasterxml.jackson.databind.JsonMappingException: No content to map due to end-of-input
+ at [Source: ; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:270)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3838)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:3783)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2842)
+	at com.laoge.raining.server.util.JacksonUtil.json2Bean(JacksonUtil.java:99)
+	at com.laoge.raining.server.invoke.InvokeServiceImpl.invoke(InvokeServiceImpl.java:51)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:193)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:178)
+	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2017-09-13 11:42:01,343 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 2495 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 11:42:01,343 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 11:42:01,344 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 11:42:03,521 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 11:42:03,567 INFO (StartupInfoLogger.java:57)- Started Application in 18.045 seconds (JVM running for 19.306)
+2017-09-13 11:42:03,824 ERROR (InvokeServiceImpl.java:61)- 解析数据异常!
+com.fasterxml.jackson.databind.JsonMappingException: No content to map due to end-of-input
+ at [Source: ; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:270)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3838)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:3783)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2842)
+	at com.laoge.raining.server.util.JacksonUtil.json2Bean(JacksonUtil.java:99)
+	at com.laoge.raining.server.invoke.InvokeServiceImpl.invoke(InvokeServiceImpl.java:51)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:193)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:178)
+	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2017-09-13 11:43:56,474 ERROR (InvokeServiceImpl.java:61)- 解析数据异常!
+com.fasterxml.jackson.databind.JsonMappingException: No content to map due to end-of-input
+ at [Source: ; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:270)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3838)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:3783)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2842)
+	at com.laoge.raining.server.util.JacksonUtil.json2Bean(JacksonUtil.java:99)
+	at com.laoge.raining.server.invoke.InvokeServiceImpl.invoke(InvokeServiceImpl.java:51)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:193)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:178)
+	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2017-09-13 11:44:08,224 ERROR (InvokeServiceImpl.java:61)- 解析数据异常!
+com.fasterxml.jackson.databind.JsonMappingException: No content to map due to end-of-input
+ at [Source: ; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:270)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3838)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:3783)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2842)
+	at com.laoge.raining.server.util.JacksonUtil.json2Bean(JacksonUtil.java:99)
+	at com.laoge.raining.server.invoke.InvokeServiceImpl.invoke(InvokeServiceImpl.java:51)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:193)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:178)
+	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2017-09-13 11:46:40,365 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 2549 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 11:46:40,366 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 11:46:40,366 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 11:46:43,298 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 11:46:43,344 INFO (StartupInfoLogger.java:57)- Started Application in 18.714 seconds (JVM running for 19.768)
+2017-09-13 11:46:51,679 ERROR (InvokeServiceImpl.java:71)- 方法执行异常{}
+java.lang.IllegalArgumentException: argument type mismatch
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.laoge.raining.server.invoke.InvokeServiceImpl.invoke(InvokeServiceImpl.java:68)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:193)
+	at com.laoge.raining.server.invoke.InvokeService$Processor$invoke.getResult(InvokeService.java:178)
+	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+	at org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer.invoke(AbstractNonblockingServer.java:518)
+	at org.apache.thrift.server.Invocation.run(Invocation.java:18)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2017-09-13 11:48:21,354 INFO (StartupInfoLogger.java:48)- Starting Application on yuhoudeMacBook-Pro.local with PID 2572 (/Users/yuhou/person/raining/example-server/target/classes started by yuhou in /Users/yuhou/person/raining)
+2017-09-13 11:48:21,355 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2017-09-13 11:48:21,355 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2017-09-13 11:48:23,328 INFO (RainServerBootstrap.java:92)- thrift server started!
+2017-09-13 11:48:23,372 INFO (StartupInfoLogger.java:57)- Started Application in 18.004 seconds (JVM running for 19.493)
