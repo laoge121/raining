@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/example-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rain-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rain-register" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rain-server" charset="UTF-8" />
   </component>
 </project>

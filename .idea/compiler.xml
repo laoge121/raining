@@ -23,11 +23,15 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="example-server" />
+        <module name="rain-client" />
+        <module name="rain-register" />
         <module name="rain-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="example-server" target="1.8" />
+      <module name="rain-client" target="1.8" />
+      <module name="rain-register" target="1.8" />
       <module name="rain-server" target="1.8" />
       <module name="raining" target="1.8" />
     </bytecodeTargetLevel>

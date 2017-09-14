@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.laoge.raining.server.config.RainAutoConfiguration,\
-com.laoge.raining.server.boot.RainServerBootstrap
+com.laoge.raining.server.boot.RainServerBootstrap,\
+com.laoge.raining.server.register.RainAutoRegisterConfiguration
