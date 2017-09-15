@@ -7,7 +7,6 @@ import com.laoge.raining.server.context.RainApplicationContext;
 import com.laoge.raining.server.util.InetAddressUtil;
 import com.laoge.raining.server.util.JacksonUtil;
 import mousio.etcd4j.EtcdClient;
-import mousio.etcd4j.responses.EtcdKeysResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
