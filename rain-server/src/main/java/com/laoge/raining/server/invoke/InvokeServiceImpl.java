@@ -27,41 +27,46 @@ public class InvokeServiceImpl implements InvokeService.Iface {
     @Override
     public String invoke(long callTime, String code, String path, String methodName, String paramJson) throws TException {
 
+        logger.info("request param callTime: {} ,code: {},path {},methodName: {},paramJson: {}", callTime, code, path, methodName, paramJson);
+
         if (StringUtils.isEmpty(path)) {
             throw new RuntimeException("路径参数异常!");
         }
-        String className = path.substring(path.lastIndexOf(".") + 1, path.length());
-        className = className.substring(0, 1).toLowerCase() + className.substring(1, className.length());
-        Object object = BeanUtil.getBean(className);
+        Object object = BeanUtil.getBean(path);
 
         JsonNode jsonNode = null;
         Class[] args = null;
         List<Object> paramList = Lists.newArrayList();
-        try {
+        if (!StringUtils.isEmpty(paramJson)) {
 
-            jsonNode = JacksonUtil.getMapper().readTree(paramJson);
+            try {
 
-            Iterator<Map.Entry<String, JsonNode>> iterator = jsonNode.fields();
-            for (; iterator.hasNext(); ) {
-                Map.Entry<String, JsonNode> map = iterator.next();
-                Object obj = JacksonUtil.json2Bean(map.getValue().toString(), Class.forName(map.getKey()));
-                paramList.add(obj);
+                jsonNode = JacksonUtil.getMapper().readTree(paramJson);
+
+                Iterator<Map.Entry<String, JsonNode>> iterator = jsonNode.fields();
+                for (; iterator.hasNext(); ) {
+                    Map.Entry<String, JsonNode> map = iterator.next();
+                    Object obj = JacksonUtil.json2Bean(map.getValue().toString(), Class.forName(map.getKey()));
+                    paramList.add(obj);
+                }
+                args = new Class[paramList.size()];
+                int i = 0;
+                for (Object ob : paramList) {
+                    args[i] = ob.getClass();
+                    i++;
+                }
+            } catch (Exception e) {
+                logger.error("解析数据异常!", e);
+                return e.toString();
             }
-            args = new Class[paramList.size()];
-            int i = 0;
-            for (Object ob : paramList) {
-                args[i] = ob.getClass();
-                i++;
-            }
-        } catch (Exception e) {
-            logger.error("解析数据异常!", e);
         }
-
         try {
 
             Method method = object.getClass().getMethod(methodName, args);
             Object result = method.invoke(object, paramList.toArray());
-            return JacksonUtil.bean2Json(result);
+            String ret = JacksonUtil.bean2Json(result);
+            logger.info("class: {} method: {} result data:{}", path, method, ret);
+            return ret;
         } catch (Exception e) {
             logger.error("方法执行异常{}", e);
             throw new RuntimeException(e);
