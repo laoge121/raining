@@ -82,12 +82,13 @@ public class RainAutoRegisterConfiguration implements InitializingBean {
                 int i = 0;
                 String paramStr = "";
                 for (Parameter parameter : parameters) {
-                    paramStr = parameter.getName() + ":" + parameter.getType().getSimpleName() + ",";
+                    paramStr += parameter.getName() + ":" + parameter.getType().getSimpleName() + ",";
                     paramMap.put(i, parameter.getType().getTypeName());
+                    i++;
                 }
                 if (!StringUtils.isEmpty(paramStr))
                     paramStr = paramStr.substring(0, paramStr.length() - 1);
-                logger.info("send etcd method path:{},metohd param:{}", methodPath + paramStr, paramMap);
+                logger.info("send etcd method path:{},metohd param:{}", methodPath + "@" + paramStr, paramMap);
 
                 etcdClient.put(methodPath + "@" + paramStr, JacksonUtil.bean2Json(paramMap)).send().get();
 
