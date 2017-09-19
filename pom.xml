@@ -9,10 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>rain-register</module>
         <module>rain-server</module>
         <module>rain-client</module>
         <module>example-server</module>
-        <module>rain-register</module>
     </modules>
 
     <parent>
@@ -31,11 +31,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- <dependency>
-                 <groupId>org.springframework.boot</groupId>
-                 <artifactId>spring-boot-configuration-processor</artifactId>
-                 <version>1.5.3.RELEASE</version>
-             </dependency> -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -59,6 +54,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
+                <version>2.4.2</version>
             </dependency>
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>

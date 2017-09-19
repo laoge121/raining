@@ -36,7 +36,7 @@
         <dependency>
             <groupId>rain</groupId>
             <artifactId>rain-server</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
