@@ -14,6 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>rain</groupId>
+            <artifactId>rain-common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>rain</groupId>
             <artifactId>rain-register</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

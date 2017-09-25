@@ -1,7 +1,7 @@
 package com.laoge.raining.server.boot;
 
+import com.laoge.raining.common.RainThreadFactory;
 import com.laoge.raining.server.config.RainAutoConfiguration;
-import com.laoge.raining.server.config.RainThreadFactory;
 import org.apache.thrift.server.TServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -72,4 +72,9 @@ public class InvokeServiceImpl implements InvokeService.Iface {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public String invokeJava(long callTime, String code, String cname, String methodName, String param) throws TException {
+        return null;
+    }
 }

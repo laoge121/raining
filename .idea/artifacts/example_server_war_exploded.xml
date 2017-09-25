@@ -36,6 +36,9 @@
           <element id="archive" name="rain-server-1.0-SNAPSHOT.jar">
             <element id="module-output" name="rain-server" />
           </element>
+          <element id="archive" name="rain-common-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="rain-common" />
+          </element>
           <element id="archive" name="rain-register-1.0-SNAPSHOT.jar">
             <element id="module-output" name="rain-register" />
           </element>

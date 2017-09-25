@@ -1,5 +1,6 @@
 package com.laoge.raining.server.config;
 
+import com.laoge.raining.common.RainThreadFactory;
 import com.laoge.raining.server.exception.RainServerException;
 import com.laoge.raining.server.invoke.InvokeService;
 import com.laoge.raining.server.invoke.InvokeServiceImpl;

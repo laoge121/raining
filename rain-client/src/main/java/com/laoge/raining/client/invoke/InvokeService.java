@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package com.laoge.raining.server.invoke;
+package com.laoge.raining.client.invoke;
 
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
@@ -41,7 +41,7 @@ public class InvokeService {
 
     public String invoke(long callTime, String code, String path, String methodName, String paramJson) throws TException;
 
-    public String invokeJava(long callTime, String code, String cname, String methodName, String param) throws TException;
+    public String invokeJava(long callTime, String code, String cname, String methodName, byte param) throws TException;
 
   }
 
@@ -49,7 +49,7 @@ public class InvokeService {
 
     public void invoke(long callTime, String code, String path, String methodName, String paramJson, AsyncMethodCallback resultHandler) throws TException;
 
-    public void invokeJava(long callTime, String code, String cname, String methodName, String param, AsyncMethodCallback resultHandler) throws TException;
+    public void invokeJava(long callTime, String code, String cname, String methodName, byte param, AsyncMethodCallback resultHandler) throws TException;
 
   }
 
@@ -100,13 +100,13 @@ public class InvokeService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "invoke failed: unknown result");
     }
 
-    public String invokeJava(long callTime, String code, String cname, String methodName, String param) throws TException
+    public String invokeJava(long callTime, String code, String cname, String methodName, byte param) throws TException
     {
       send_invokeJava(callTime, code, cname, methodName, param);
       return recv_invokeJava();
     }
 
-    public void send_invokeJava(long callTime, String code, String cname, String methodName, String param) throws TException
+    public void send_invokeJava(long callTime, String code, String cname, String methodName, byte param) throws TException
     {
       invokeJava_args args = new invokeJava_args();
       args.setCallTime(callTime);
@@ -189,7 +189,7 @@ public class InvokeService {
       }
     }
 
-    public void invokeJava(long callTime, String code, String cname, String methodName, String param, AsyncMethodCallback resultHandler) throws TException {
+    public void invokeJava(long callTime, String code, String cname, String methodName, byte param, AsyncMethodCallback resultHandler) throws TException {
       checkReady();
       invokeJava_call method_call = new invokeJava_call(callTime, code, cname, methodName, param, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -201,8 +201,8 @@ public class InvokeService {
       private String code;
       private String cname;
       private String methodName;
-      private String param;
-      public invokeJava_call(long callTime, String code, String cname, String methodName, String param, AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws TException {
+      private byte param;
+      public invokeJava_call(long callTime, String code, String cname, String methodName, byte param, AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.callTime = callTime;
         this.code = code;
@@ -1560,7 +1560,7 @@ public class InvokeService {
     private static final org.apache.thrift.protocol.TField CODE_FIELD_DESC = new org.apache.thrift.protocol.TField("code", org.apache.thrift.protocol.TType.STRING, (short)2);
     private static final org.apache.thrift.protocol.TField CNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("cname", org.apache.thrift.protocol.TType.STRING, (short)3);
     private static final org.apache.thrift.protocol.TField METHOD_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("methodName", org.apache.thrift.protocol.TType.STRING, (short)4);
-    private static final org.apache.thrift.protocol.TField PARAM_FIELD_DESC = new org.apache.thrift.protocol.TField("param", org.apache.thrift.protocol.TType.STRING, (short)5);
+    private static final org.apache.thrift.protocol.TField PARAM_FIELD_DESC = new org.apache.thrift.protocol.TField("param", org.apache.thrift.protocol.TType.BYTE, (short)5);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
     static {
@@ -1572,7 +1572,7 @@ public class InvokeService {
     public String code; // required
     public String cname; // required
     public String methodName; // required
-    public String param; // required
+    public byte param; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -1646,6 +1646,7 @@ public class InvokeService {
 
     // isset id assignments
     private static final int __CALLTIME_ISSET_ID = 0;
+    private static final int __PARAM_ISSET_ID = 1;
     private byte __isset_bitfield = 0;
     public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
     static {
@@ -1659,7 +1660,7 @@ public class InvokeService {
       tmpMap.put(_Fields.METHOD_NAME, new org.apache.thrift.meta_data.FieldMetaData("methodName", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.PARAM, new org.apache.thrift.meta_data.FieldMetaData("param", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(invokeJava_args.class, metaDataMap);
     }
@@ -1672,7 +1673,7 @@ public class InvokeService {
       String code,
       String cname,
       String methodName,
-      String param)
+      byte param)
     {
       this();
       this.callTime = callTime;
@@ -1681,6 +1682,7 @@ public class InvokeService {
       this.cname = cname;
       this.methodName = methodName;
       this.param = param;
+      setParamIsSet(true);
     }
 
     /**
@@ -1698,9 +1700,7 @@ public class InvokeService {
       if (other.isSetMethodName()) {
         this.methodName = other.methodName;
       }
-      if (other.isSetParam()) {
-        this.param = other.param;
-      }
+      this.param = other.param;
     }
 
     public invokeJava_args deepCopy() {
@@ -1714,7 +1714,8 @@ public class InvokeService {
       this.code = null;
       this.cname = null;
       this.methodName = null;
-      this.param = null;
+      setParamIsSet(false);
+      this.param = 0;
     }
 
     public long getCallTime() {
@@ -1812,28 +1813,27 @@ public class InvokeService {
       }
     }
 
-    public String getParam() {
+    public byte getParam() {
       return this.param;
     }
 
-    public invokeJava_args setParam(String param) {
+    public invokeJava_args setParam(byte param) {
       this.param = param;
+      setParamIsSet(true);
       return this;
     }
 
     public void unsetParam() {
-      this.param = null;
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __PARAM_ISSET_ID);
     }
 
     /** Returns true if field param is set (has been assigned a value) and false otherwise */
     public boolean isSetParam() {
-      return this.param != null;
+      return EncodingUtils.testBit(__isset_bitfield, __PARAM_ISSET_ID);
     }
 
     public void setParamIsSet(boolean value) {
-      if (!value) {
-        this.param = null;
-      }
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __PARAM_ISSET_ID, value);
     }
 
     public void setFieldValue(_Fields field, Object value) {
@@ -1874,7 +1874,7 @@ public class InvokeService {
         if (value == null) {
           unsetParam();
         } else {
-          setParam((String)value);
+          setParam((Byte)value);
         }
         break;
 
@@ -1972,12 +1972,12 @@ public class InvokeService {
           return false;
       }
 
-      boolean this_present_param = true && this.isSetParam();
-      boolean that_present_param = true && that.isSetParam();
+      boolean this_present_param = true;
+      boolean that_present_param = true;
       if (this_present_param || that_present_param) {
         if (!(this_present_param && that_present_param))
           return false;
-        if (!this.param.equals(that.param))
+        if (this.param != that.param)
           return false;
       }
 
@@ -2008,7 +2008,7 @@ public class InvokeService {
       if (present_methodName)
         list.add(methodName);
 
-      boolean present_param = true && (isSetParam());
+      boolean present_param = true;
       list.add(present_param);
       if (present_param)
         list.add(param);
@@ -2123,11 +2123,7 @@ public class InvokeService {
       first = false;
       if (!first) sb.append(", ");
       sb.append("param:");
-      if (this.param == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.param);
-      }
+      sb.append(this.param);
       first = false;
       sb.append(")");
       return sb.toString();
@@ -2207,8 +2203,8 @@ public class InvokeService {
               }
               break;
             case 5: // PARAM
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.param = iprot.readString();
+              if (schemeField.type == org.apache.thrift.protocol.TType.BYTE) {
+                struct.param = iprot.readByte();
                 struct.setParamIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -2247,11 +2243,9 @@ public class InvokeService {
           oprot.writeString(struct.methodName);
           oprot.writeFieldEnd();
         }
-        if (struct.param != null) {
-          oprot.writeFieldBegin(PARAM_FIELD_DESC);
-          oprot.writeString(struct.param);
-          oprot.writeFieldEnd();
-        }
+        oprot.writeFieldBegin(PARAM_FIELD_DESC);
+        oprot.writeByte(struct.param);
+        oprot.writeFieldEnd();
         oprot.writeFieldStop();
         oprot.writeStructEnd();
       }
@@ -2299,7 +2293,7 @@ public class InvokeService {
           oprot.writeString(struct.methodName);
         }
         if (struct.isSetParam()) {
-          oprot.writeString(struct.param);
+          oprot.writeByte(struct.param);
         }
       }
 
@@ -2324,7 +2318,7 @@ public class InvokeService {
           struct.setMethodNameIsSet(true);
         }
         if (incoming.get(4)) {
-          struct.param = iprot.readString();
+          struct.param = iprot.readByte();
           struct.setParamIsSet(true);
         }
       }
