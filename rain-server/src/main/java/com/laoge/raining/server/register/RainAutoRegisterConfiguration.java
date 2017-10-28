@@ -56,7 +56,7 @@ public class RainAutoRegisterConfiguration implements InitializingBean {
         }
         String hosts = InetAddressUtil.getLocalHostLANAddress().getHostAddress() + ":" + rainServerProperties.getPort();
 
-        rainApplicationContext.setServerBathPath(basePath + "/" + hosts);
+        rainApplicationContext.setServerBathPath(hosts);
 
         // etcdClient.putDir(basePath).send().get();
 
