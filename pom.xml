@@ -15,6 +15,7 @@
         <module>rain-client</module>
         <module>rain-monitor</module>
         <module>example-server</module>
+        <module>rain-grpc</module>
     </modules>
 
     <parent>
@@ -46,7 +47,7 @@
             <dependency>
                 <groupId>org.apache.thrift</groupId>
                 <artifactId>libthrift</artifactId>
-                <version>0.9.3</version>
+                <version>0.10.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
