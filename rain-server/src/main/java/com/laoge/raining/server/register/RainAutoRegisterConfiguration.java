@@ -81,6 +81,7 @@ public class RainAutoRegisterConfiguration implements InitializingBean {
             }
             etcdClient.put(classPath, hostss).send().get();
             logger.info("send etcd class path {}", classPath);
+
            /* Method[] methods = BeanUtil.getBean(entry.getValue()).getClass().getDeclaredMethods();
 
             for (Method method : methods) {
