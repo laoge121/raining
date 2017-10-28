@@ -1,5 +1,6 @@
 package com.laoge.raining.server.context;
 
+import com.laoge.raining.server.util.BeanUtil;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Parameter;
@@ -13,15 +14,15 @@ import java.util.Map;
 public class RainApplicationContextInitializer extends AbstractRainApplicationContext {
 
     @Override
-    public Map<String, Object> beanContent() {
+    public Map<String, String> beanContent() {
         return getContent();
     }
 
     @Override
     public Object getBean(String beanName) {
-        Map<String, Object> content = getContent();
+        Map<String, String> content = getContent();
         if (content.containsKey(beanName)) {
-            return content.get(beanName);
+            return BeanUtil.getBean(content.get(beanName));
         }
         return null;
     }

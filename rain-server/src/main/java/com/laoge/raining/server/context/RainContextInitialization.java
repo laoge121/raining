@@ -58,7 +58,7 @@ public class RainContextInitialization implements BeanPostProcessor {
      */
     public void rainContentInitinalication(Object o, String s) {
 
-        applicationContentInitializer.beanMappingContent(s, o);
+        applicationContentInitializer.beanMappingContent(o.getClass().getTypeName(), s);
         logger.info("init rain content bean name:{},class:{}", s, o);
 
     }

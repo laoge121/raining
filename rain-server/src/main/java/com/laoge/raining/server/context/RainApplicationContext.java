@@ -16,7 +16,7 @@ public interface RainApplicationContext {
      * @param beanName 容器中存储的 bean 名称
      * @param object   对象
      */
-    void beanMappingContent(String beanName, Object object);
+    void beanMappingContent(String beanName, String object);
 
 
     /**
@@ -33,7 +33,7 @@ public interface RainApplicationContext {
      *
      * @return
      */
-    Map<String, Object> beanContent();
+    Map<String, String> beanContent();
 
     /**
      * 获取bean 名称

@@ -1,5 +1,7 @@
 package com.laoge.raining.server.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class BeanUtil implements ApplicationContextAware {
+
+    private static final Logger logger = LoggerFactory.getLogger(BeanUtil.class);
 
     //spring上下文
     private static ApplicationContext applicationContext;
@@ -27,6 +31,7 @@ public class BeanUtil implements ApplicationContextAware {
      * @return
      */
     public static Object getBean(String name) {
+        logger.info("bean util init beanName:{}",name);
         return applicationContext.getBean(name);
     }
 }

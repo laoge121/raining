@@ -35,7 +35,7 @@ public abstract class AbstractRainApplicationContext implements RainApplicationC
      * key class.url:类的全路径
      * val class :类对象
      */
-    private static final Map<String, Object> content = Maps.newHashMap();
+    private static final Map<String, String> content = Maps.newHashMap();
 
     /**
      * 记录系统 服务 方法mapping 信息
@@ -61,7 +61,7 @@ public abstract class AbstractRainApplicationContext implements RainApplicationC
     }
 
     @Override
-    public void beanMappingContent(String beanName, Object object) {
+    public void beanMappingContent(String beanName, String object) {
         if (content.containsKey(beanName)) {
             logger.error(" rain contenxt name {} repetition!", beanName);
             throw new RainServerException("rain contenxt name " + beanName + " repetition!");
@@ -76,7 +76,7 @@ public abstract class AbstractRainApplicationContext implements RainApplicationC
         methodMappingContent.put(beanName + "@" + method + "@" + parameters.length, parameters);
     }
 
-    protected Map<String, Object> getContent() {
+    protected Map<String, String> getContent() {
         return content;
     }
 

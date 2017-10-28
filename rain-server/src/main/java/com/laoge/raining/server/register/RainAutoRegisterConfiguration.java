@@ -4,16 +4,21 @@ import com.google.common.collect.Maps;
 import com.laoge.raining.server.config.RainAutoConfiguration;
 import com.laoge.raining.server.config.RainServerProperties;
 import com.laoge.raining.server.context.RainApplicationContext;
+import com.laoge.raining.server.util.BeanUtil;
 import com.laoge.raining.server.util.InetAddressUtil;
 import com.laoge.raining.server.util.JacksonUtil;
 import mousio.etcd4j.EtcdClient;
+import mousio.etcd4j.responses.EtcdKeysResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
@@ -26,7 +31,7 @@ import java.util.Map;
  */
 @Configuration
 @EnableConfigurationProperties(RainServerProperties.class)
-@AutoConfigureAfter(RainAutoConfiguration.class)
+@AutoConfigureAfter({RainAutoConfiguration.class, BeanUtil.class})
 public class RainAutoRegisterConfiguration implements InitializingBean {
 
     private static final Logger logger = LoggerFactory.getLogger(RainAutoRegisterConfiguration.class);
@@ -41,11 +46,10 @@ public class RainAutoRegisterConfiguration implements InitializingBean {
     @Resource
     private RainServerProperties rainServerProperties;
 
-
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        String basePath = "rain-server-" + rainServerProperties.getServerName();
+        String basePath = "rain-server-raining";// + rainServerProperties.getServerName();
 
         rainApplicationContext.setBasePath(basePath);
         //注册根目录
@@ -57,22 +61,35 @@ public class RainAutoRegisterConfiguration implements InitializingBean {
             logger.info("etcd base path create!");
             etcdClient.putDir(basePath).send().get();
         }
-        basePath = basePath + "/" + InetAddressUtil.getLocalHostLANAddress().getHostAddress() + ":" + rainServerProperties.getPort();
-        rainApplicationContext.setServerBathPath(basePath);
+        String hosts = InetAddressUtil.getLocalHostLANAddress().getHostAddress() + ":" + rainServerProperties.getPort();
 
-        etcdClient.putDir(basePath).send().get();
+        rainApplicationContext.setServerBathPath(basePath + "/" + hosts);
+
+        // etcdClient.putDir(basePath).send().get();
 
         logger.info("send etcd base path {}", basePath);
 
         //将rainContent 中的 对象 信息进行 etcd 注册
-        Map<String, Object> content = rainApplicationContext.beanContent();
+        Map<String, String> content = rainApplicationContext.beanContent();
 
-        for (Map.Entry<String, Object> entry : content.entrySet()) {
+        for (Map.Entry<String, String> entry : content.entrySet()) {
             //上传服务的路径
-            String classPath = basePath + "/" + entry.getKey();
-            etcdClient.putDir(classPath).send().get();
+            String classPath = basePath + "/" + entry.getKey();//basePath + "/" + entry.getKey();
+            String hostss = "";
+            try {
+                EtcdKeysResponse response = etcdClient.get(classPath).send().get();
+                hostss = response.getNode().getValue();
+                if (!StringUtils.isEmpty(hostss)) {
+                    hostss += ";" + hosts;
+                }
+            } catch (Exception e) {
+                logger.error(classPath + "is frist one register!");
+                hostss = hosts;
+            }
+            etcdClient.put(classPath, hostss).send().get();
             logger.info("send etcd class path {}", classPath);
-            Method[] methods = entry.getValue().getClass().getDeclaredMethods();
+            logger.error(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{}",entry.getValue());
+           /* Method[] methods = BeanUtil.getBean(entry.getValue()).getClass().getDeclaredMethods();
 
             for (Method method : methods) {
                 //获取method的参数类型
@@ -92,7 +109,7 @@ public class RainAutoRegisterConfiguration implements InitializingBean {
 
                 etcdClient.put(methodPath + "@" + paramStr, JacksonUtil.bean2Json(paramMap)).send().get();
 
-            }
+            }*/
         }
     }
 }
