@@ -1,12 +1,10 @@
 package com.laoge.raining.server.register;
 
-import com.google.common.collect.Maps;
 import com.laoge.raining.server.config.RainAutoConfiguration;
 import com.laoge.raining.server.config.RainServerProperties;
 import com.laoge.raining.server.context.RainApplicationContext;
 import com.laoge.raining.server.util.BeanUtil;
 import com.laoge.raining.server.util.InetAddressUtil;
-import com.laoge.raining.server.util.JacksonUtil;
 import mousio.etcd4j.EtcdClient;
 import mousio.etcd4j.responses.EtcdKeysResponse;
 import org.slf4j.Logger;
@@ -14,15 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.Map;
 
 /**
