@@ -15,7 +15,7 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
   private static final org.apache.thrift.protocol.TField CLASS_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("className", org.apache.thrift.protocol.TType.STRING, (short)2);
   private static final org.apache.thrift.protocol.TField METHOD_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("methodName", org.apache.thrift.protocol.TType.STRING, (short)3);
   private static final org.apache.thrift.protocol.TField BODY_FIELD_DESC = new org.apache.thrift.protocol.TField("body", org.apache.thrift.protocol.TType.STRING, (short)4);
-  private static final org.apache.thrift.protocol.TField LINK_FIELD_DESC = new org.apache.thrift.protocol.TField("link", org.apache.thrift.protocol.TType.STRING, (short)5);
+  private static final org.apache.thrift.protocol.TField PARAM_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("paramList", org.apache.thrift.protocol.TType.LIST, (short)5);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new RainRequestStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new RainRequestTupleSchemeFactory();
@@ -24,7 +24,7 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
   public String className; // required
   public String methodName; // required
   public String body; // required
-  public String link; // required
+  public java.util.List<RainRequestParam> paramList; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -32,7 +32,7 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     CLASS_NAME((short)2, "className"),
     METHOD_NAME((short)3, "methodName"),
     BODY((short)4, "body"),
-    LINK((short)5, "link");
+    PARAM_LIST((short)5, "paramList");
 
     private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
@@ -55,8 +55,8 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
           return METHOD_NAME;
         case 4: // BODY
           return BODY;
-        case 5: // LINK
-          return LINK;
+        case 5: // PARAM_LIST
+          return PARAM_LIST;
         default:
           return null;
       }
@@ -108,8 +108,9 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.BODY, new org.apache.thrift.meta_data.FieldMetaData("body", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.LINK, new org.apache.thrift.meta_data.FieldMetaData("link", org.apache.thrift.TFieldRequirementType.DEFAULT,
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.PARAM_LIST, new org.apache.thrift.meta_data.FieldMetaData("paramList", org.apache.thrift.TFieldRequirementType.DEFAULT,
+        new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST,
+            new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, RainRequestParam.class))));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(RainRequest.class, metaDataMap);
   }
@@ -122,14 +123,14 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     String className,
     String methodName,
     String body,
-    String link)
+    java.util.List<RainRequestParam> paramList)
   {
     this();
     this.classRUI = classRUI;
     this.className = className;
     this.methodName = methodName;
     this.body = body;
-    this.link = link;
+    this.paramList = paramList;
   }
 
   /**
@@ -148,8 +149,12 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     if (other.isSetBody()) {
       this.body = other.body;
     }
-    if (other.isSetLink()) {
-      this.link = other.link;
+    if (other.isSetParamList()) {
+      java.util.List<RainRequestParam> __this__paramList = new java.util.ArrayList<RainRequestParam>(other.paramList.size());
+      for (RainRequestParam other_element : other.paramList) {
+        __this__paramList.add(new RainRequestParam(other_element));
+      }
+      this.paramList = __this__paramList;
     }
   }
 
@@ -163,7 +168,7 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     this.className = null;
     this.methodName = null;
     this.body = null;
-    this.link = null;
+    this.paramList = null;
   }
 
   public String getClassRUI() {
@@ -262,27 +267,42 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     }
   }
 
-  public String getLink() {
-    return this.link;
+  public int getParamListSize() {
+    return (this.paramList == null) ? 0 : this.paramList.size();
   }
 
-  public RainRequest setLink(String link) {
-    this.link = link;
+  public java.util.Iterator<RainRequestParam> getParamListIterator() {
+    return (this.paramList == null) ? null : this.paramList.iterator();
+  }
+
+  public void addToParamList(RainRequestParam elem) {
+    if (this.paramList == null) {
+      this.paramList = new java.util.ArrayList<RainRequestParam>();
+    }
+    this.paramList.add(elem);
+  }
+
+  public java.util.List<RainRequestParam> getParamList() {
+    return this.paramList;
+  }
+
+  public RainRequest setParamList(java.util.List<RainRequestParam> paramList) {
+    this.paramList = paramList;
     return this;
   }
 
-  public void unsetLink() {
-    this.link = null;
+  public void unsetParamList() {
+    this.paramList = null;
   }
 
-  /** Returns true if field link is set (has been assigned a value) and false otherwise */
-  public boolean isSetLink() {
-    return this.link != null;
+  /** Returns true if field paramList is set (has been assigned a value) and false otherwise */
+  public boolean isSetParamList() {
+    return this.paramList != null;
   }
 
-  public void setLinkIsSet(boolean value) {
+  public void setParamListIsSet(boolean value) {
     if (!value) {
-      this.link = null;
+      this.paramList = null;
     }
   }
 
@@ -320,11 +340,11 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
       }
       break;
 
-    case LINK:
+    case PARAM_LIST:
       if (value == null) {
-        unsetLink();
+        unsetParamList();
       } else {
-        setLink((String)value);
+        setParamList((java.util.List<RainRequestParam>)value);
       }
       break;
 
@@ -345,8 +365,8 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     case BODY:
       return getBody();
 
-    case LINK:
-      return getLink();
+    case PARAM_LIST:
+      return getParamList();
 
     }
     throw new IllegalStateException();
@@ -367,8 +387,8 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
       return isSetMethodName();
     case BODY:
       return isSetBody();
-    case LINK:
-      return isSetLink();
+    case PARAM_LIST:
+      return isSetParamList();
     }
     throw new IllegalStateException();
   }
@@ -424,12 +444,12 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
         return false;
     }
 
-    boolean this_present_link = true && this.isSetLink();
-    boolean that_present_link = true && that.isSetLink();
-    if (this_present_link || that_present_link) {
-      if (!(this_present_link && that_present_link))
+    boolean this_present_paramList = true && this.isSetParamList();
+    boolean that_present_paramList = true && that.isSetParamList();
+    if (this_present_paramList || that_present_paramList) {
+      if (!(this_present_paramList && that_present_paramList))
         return false;
-      if (!this.link.equals(that.link))
+      if (!this.paramList.equals(that.paramList))
         return false;
     }
 
@@ -456,9 +476,9 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     if (isSetBody())
       hashCode = hashCode * 8191 + body.hashCode();
 
-    hashCode = hashCode * 8191 + ((isSetLink()) ? 131071 : 524287);
-    if (isSetLink())
-      hashCode = hashCode * 8191 + link.hashCode();
+    hashCode = hashCode * 8191 + ((isSetParamList()) ? 131071 : 524287);
+    if (isSetParamList())
+      hashCode = hashCode * 8191 + paramList.hashCode();
 
     return hashCode;
   }
@@ -511,12 +531,12 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
         return lastComparison;
       }
     }
-    lastComparison = Boolean.valueOf(isSetLink()).compareTo(other.isSetLink());
+    lastComparison = Boolean.valueOf(isSetParamList()).compareTo(other.isSetParamList());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetLink()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.link, other.link);
+    if (isSetParamList()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.paramList, other.paramList);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -573,11 +593,11 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
     }
     first = false;
     if (!first) sb.append(", ");
-    sb.append("link:");
-    if (this.link == null) {
+    sb.append("paramList:");
+    if (this.paramList == null) {
       sb.append("null");
     } else {
-      sb.append(this.link);
+      sb.append(this.paramList);
     }
     first = false;
     sb.append(")");
@@ -655,10 +675,21 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 5: // LINK
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.link = iprot.readString();
-              struct.setLinkIsSet(true);
+          case 5: // PARAM_LIST
+            if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+              {
+                org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
+                struct.paramList = new java.util.ArrayList<RainRequestParam>(_list0.size);
+                RainRequestParam _elem1;
+                for (int _i2 = 0; _i2 < _list0.size; ++_i2)
+                {
+                  _elem1 = new RainRequestParam();
+                  _elem1.read(iprot);
+                  struct.paramList.add(_elem1);
+                }
+                iprot.readListEnd();
+              }
+              struct.setParamListIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -698,9 +729,16 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
         oprot.writeString(struct.body);
         oprot.writeFieldEnd();
       }
-      if (struct.link != null) {
-        oprot.writeFieldBegin(LINK_FIELD_DESC);
-        oprot.writeString(struct.link);
+      if (struct.paramList != null) {
+        oprot.writeFieldBegin(PARAM_LIST_FIELD_DESC);
+        {
+          oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.paramList.size()));
+          for (RainRequestParam _iter3 : struct.paramList)
+          {
+            _iter3.write(oprot);
+          }
+          oprot.writeListEnd();
+        }
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -733,7 +771,7 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
       if (struct.isSetBody()) {
         optionals.set(3);
       }
-      if (struct.isSetLink()) {
+      if (struct.isSetParamList()) {
         optionals.set(4);
       }
       oprot.writeBitSet(optionals, 5);
@@ -749,8 +787,14 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
       if (struct.isSetBody()) {
         oprot.writeString(struct.body);
       }
-      if (struct.isSetLink()) {
-        oprot.writeString(struct.link);
+      if (struct.isSetParamList()) {
+        {
+          oprot.writeI32(struct.paramList.size());
+          for (RainRequestParam _iter4 : struct.paramList)
+          {
+            _iter4.write(oprot);
+          }
+        }
       }
     }
 
@@ -775,8 +819,18 @@ public class RainRequest implements org.apache.thrift.TBase<RainRequest, RainReq
         struct.setBodyIsSet(true);
       }
       if (incoming.get(4)) {
-        struct.link = iprot.readString();
-        struct.setLinkIsSet(true);
+        {
+          org.apache.thrift.protocol.TList _list5 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+          struct.paramList = new java.util.ArrayList<RainRequestParam>(_list5.size);
+          RainRequestParam _elem6;
+          for (int _i7 = 0; _i7 < _list5.size; ++_i7)
+          {
+            _elem6 = new RainRequestParam();
+            _elem6.read(iprot);
+            struct.paramList.add(_elem6);
+          }
+        }
+        struct.setParamListIsSet(true);
       }
     }
   }

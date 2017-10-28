@@ -12,13 +12,13 @@ public class RouteService {
 
   public interface Iface {
 
-    public RainResponse route(java.util.List<RainRequest> rainRequest) throws org.apache.thrift.TException;
+    public RainResponse route(RainRequest rainRequest) throws org.apache.thrift.TException;
 
   }
 
   public interface AsyncIface {
 
-    public void route(java.util.List<RainRequest> rainRequest, org.apache.thrift.async.AsyncMethodCallback<RainResponse> resultHandler) throws org.apache.thrift.TException;
+    public void route(RainRequest rainRequest, org.apache.thrift.async.AsyncMethodCallback<RainResponse> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -42,13 +42,13 @@ public class RouteService {
       super(iprot, oprot);
     }
 
-    public RainResponse route(java.util.List<RainRequest> rainRequest) throws org.apache.thrift.TException
+    public RainResponse route(RainRequest rainRequest) throws org.apache.thrift.TException
     {
       send_route(rainRequest);
       return recv_route();
     }
 
-    public void send_route(java.util.List<RainRequest> rainRequest) throws org.apache.thrift.TException
+    public void send_route(RainRequest rainRequest) throws org.apache.thrift.TException
     {
       route_args args = new route_args();
       args.setRainRequest(rainRequest);
@@ -83,7 +83,7 @@ public class RouteService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void route(java.util.List<RainRequest> rainRequest, org.apache.thrift.async.AsyncMethodCallback<RainResponse> resultHandler) throws org.apache.thrift.TException {
+    public void route(RainRequest rainRequest, org.apache.thrift.async.AsyncMethodCallback<RainResponse> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       route_call method_call = new route_call(rainRequest, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -91,8 +91,8 @@ public class RouteService {
     }
 
     public static class route_call extends org.apache.thrift.async.TAsyncMethodCall<RainResponse> {
-      private java.util.List<RainRequest> rainRequest;
-      public route_call(java.util.List<RainRequest> rainRequest, org.apache.thrift.async.AsyncMethodCallback<RainResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private RainRequest rainRequest;
+      public route_call(RainRequest rainRequest, org.apache.thrift.async.AsyncMethodCallback<RainResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.rainRequest = rainRequest;
       }
@@ -235,12 +235,12 @@ public class RouteService {
   public static class route_args implements org.apache.thrift.TBase<route_args, route_args._Fields>, java.io.Serializable, Cloneable, Comparable<route_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("route_args");
 
-    private static final org.apache.thrift.protocol.TField RAIN_REQUEST_FIELD_DESC = new org.apache.thrift.protocol.TField("rainRequest", org.apache.thrift.protocol.TType.LIST, (short)1);
+    private static final org.apache.thrift.protocol.TField RAIN_REQUEST_FIELD_DESC = new org.apache.thrift.protocol.TField("rainRequest", org.apache.thrift.protocol.TType.STRUCT, (short)1);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new route_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new route_argsTupleSchemeFactory();
 
-    public java.util.List<RainRequest> rainRequest; // required
+    public RainRequest rainRequest; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -305,8 +305,7 @@ public class RouteService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.RAIN_REQUEST, new org.apache.thrift.meta_data.FieldMetaData("rainRequest", org.apache.thrift.TFieldRequirementType.DEFAULT,
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST,
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, RainRequest.class))));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, RainRequest.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(route_args.class, metaDataMap);
     }
@@ -315,7 +314,7 @@ public class RouteService {
     }
 
     public route_args(
-      java.util.List<RainRequest> rainRequest)
+      RainRequest rainRequest)
     {
       this();
       this.rainRequest = rainRequest;
@@ -326,11 +325,7 @@ public class RouteService {
      */
     public route_args(route_args other) {
       if (other.isSetRainRequest()) {
-        java.util.List<RainRequest> __this__rainRequest = new java.util.ArrayList<RainRequest>(other.rainRequest.size());
-        for (RainRequest other_element : other.rainRequest) {
-          __this__rainRequest.add(new RainRequest(other_element));
-        }
-        this.rainRequest = __this__rainRequest;
+        this.rainRequest = new RainRequest(other.rainRequest);
       }
     }
 
@@ -343,26 +338,11 @@ public class RouteService {
       this.rainRequest = null;
     }
 
-    public int getRainRequestSize() {
-      return (this.rainRequest == null) ? 0 : this.rainRequest.size();
-    }
-
-    public java.util.Iterator<RainRequest> getRainRequestIterator() {
-      return (this.rainRequest == null) ? null : this.rainRequest.iterator();
-    }
-
-    public void addToRainRequest(RainRequest elem) {
-      if (this.rainRequest == null) {
-        this.rainRequest = new java.util.ArrayList<RainRequest>();
-      }
-      this.rainRequest.add(elem);
-    }
-
-    public java.util.List<RainRequest> getRainRequest() {
+    public RainRequest getRainRequest() {
       return this.rainRequest;
     }
 
-    public route_args setRainRequest(java.util.List<RainRequest> rainRequest) {
+    public route_args setRainRequest(RainRequest rainRequest) {
       this.rainRequest = rainRequest;
       return this;
     }
@@ -388,7 +368,7 @@ public class RouteService {
         if (value == null) {
           unsetRainRequest();
         } else {
-          setRainRequest((java.util.List<RainRequest>)value);
+          setRainRequest((RainRequest)value);
         }
         break;
 
@@ -507,6 +487,9 @@ public class RouteService {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (rainRequest != null) {
+        rainRequest.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -544,19 +527,9 @@ public class RouteService {
           }
           switch (schemeField.id) {
             case 1: // RAIN_REQUEST
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
-                  struct.rainRequest = new java.util.ArrayList<RainRequest>(_list0.size);
-                  RainRequest _elem1;
-                  for (int _i2 = 0; _i2 < _list0.size; ++_i2)
-                  {
-                    _elem1 = new RainRequest();
-                    _elem1.read(iprot);
-                    struct.rainRequest.add(_elem1);
-                  }
-                  iprot.readListEnd();
-                }
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.rainRequest = new RainRequest();
+                struct.rainRequest.read(iprot);
                 struct.setRainRequestIsSet(true);
               } else {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -579,14 +552,7 @@ public class RouteService {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.rainRequest != null) {
           oprot.writeFieldBegin(RAIN_REQUEST_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.rainRequest.size()));
-            for (RainRequest _iter3 : struct.rainRequest)
-            {
-              _iter3.write(oprot);
-            }
-            oprot.writeListEnd();
-          }
+          struct.rainRequest.write(oprot);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -612,13 +578,7 @@ public class RouteService {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetRainRequest()) {
-          {
-            oprot.writeI32(struct.rainRequest.size());
-            for (RainRequest _iter4 : struct.rainRequest)
-            {
-              _iter4.write(oprot);
-            }
-          }
+          struct.rainRequest.write(oprot);
         }
       }
 
@@ -627,17 +587,8 @@ public class RouteService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          {
-            org.apache.thrift.protocol.TList _list5 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.rainRequest = new java.util.ArrayList<RainRequest>(_list5.size);
-            RainRequest _elem6;
-            for (int _i7 = 0; _i7 < _list5.size; ++_i7)
-            {
-              _elem6 = new RainRequest();
-              _elem6.read(iprot);
-              struct.rainRequest.add(_elem6);
-            }
-          }
+          struct.rainRequest = new RainRequest();
+          struct.rainRequest.read(iprot);
           struct.setRainRequestIsSet(true);
         }
       }
@@ -938,7 +889,7 @@ public class RouteService {
         while (true)
         {
           schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) {
             break;
           }
           switch (schemeField.id) {

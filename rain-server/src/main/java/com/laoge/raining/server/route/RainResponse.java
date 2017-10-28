@@ -382,7 +382,7 @@ public class RainResponse implements org.apache.thrift.TBase<RainResponse, RainR
       while (true)
       {
         schemeField = iprot.readFieldBegin();
-        if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (schemeField.type == org.apache.thrift.protocol.TType.STOP) {
           break;
         }
         switch (schemeField.id) {
@@ -391,7 +391,7 @@ public class RainResponse implements org.apache.thrift.TBase<RainResponse, RainR
               struct.responseHead = new RainResponseHead();
               struct.responseHead.read(iprot);
               struct.setResponseHeadIsSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
