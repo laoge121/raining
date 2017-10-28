@@ -1,4 +1,4 @@
-package com.laoge.raining.client.serialize;
+package com.laoge.raining.common.serialize;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;

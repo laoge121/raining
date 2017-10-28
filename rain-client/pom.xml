@@ -80,13 +80,5 @@
             <version>4.1.0.CR7</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.esotericsoftware</groupId>
-            <artifactId>kryo-shaded</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </dependency>
     </dependencies>
 </project>

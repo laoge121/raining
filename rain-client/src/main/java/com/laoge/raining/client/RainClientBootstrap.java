@@ -7,7 +7,7 @@ import com.laoge.raining.client.router.DirectAlgorithm;
 import com.laoge.raining.client.router.Node;
 import com.laoge.raining.client.router.RibbonAlgorithm;
 import com.laoge.raining.client.router.RouterAlgorithm;
-import com.laoge.raining.client.serialize.KryoUtil;
+import com.laoge.raining.common.serialize.KryoUtil;
 import mousio.etcd4j.EtcdClient;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
