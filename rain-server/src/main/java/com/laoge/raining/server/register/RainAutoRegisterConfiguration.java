@@ -72,7 +72,7 @@ public class RainAutoRegisterConfiguration implements InitializingBean {
             try {
                 EtcdKeysResponse response = etcdClient.get(classPath).send().get();
                 hostss = response.getNode().getValue();
-                if (!StringUtils.isEmpty(hostss)) {
+                if (!StringUtils.isEmpty(hostss) && !hostss.contains(hosts)) {
                     hostss += ";" + hosts;
                 }
             } catch (Exception e) {

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class RainAutoUnRegisterConfiguration implements DisposableBean {
     private RainApplicationContext rainApplicationContext;
 
     @Override
+    //@PreDestroy 执行推出操作
     public void destroy() throws Exception {
 
         logger.info("RainAutoUnRegisterConfiguration destory!");
