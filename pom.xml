@@ -16,6 +16,8 @@
         <module>rain-monitor</module>
         <module>example-server</module>
         <module>rain-grpc</module>
+        <module>example-api</module>
+        <module>example-client</module>
     </modules>
 
     <parent>

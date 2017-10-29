@@ -1,6 +1,6 @@
-package com.laoge.raining.example;
+package com.laoge.raining.api.example;
 
-import com.laoge.raining.entity.Person;
+import com.laoge.raining.api.entity.Person;
 
 /**
  * Created by yuhou on 2017/9/18.

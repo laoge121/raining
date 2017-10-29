@@ -1,6 +1,7 @@
 package com.laoge.raining.example;
 
-import com.laoge.raining.entity.Person;
+import com.laoge.raining.api.entity.Person;
+import com.laoge.raining.api.example.HellowService;
 import com.laoge.raining.server.annotation.RainServer;
 import org.springframework.stereotype.Service;
 
