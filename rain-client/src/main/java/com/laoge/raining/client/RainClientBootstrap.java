@@ -31,6 +31,9 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.Map;
 
 /**
@@ -60,16 +63,40 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-
-        //获取class 信息
         Class clazz = bean.getClass();
+        Object target = getTargetBean(bean);
         for (; clazz != null; ) {
             for (Field field : clazz.getDeclaredFields()) {
                 if (field.isAnnotationPresent(RainClient.class)) {
+                    Object obj = null;
+                    try {
+                        obj = beanFactory.getBean(field.getName());
+                    } catch (Exception e) {
+                        logger.error("not found {} so create one set BeanFactory.", field.getName());
+                    }
+                    if (null == obj) {
+                        ProxyFactory proxyFactory = new ProxyFactory(field.getType(), new MethodInterceptor() {
+                            @Override
+                            public Object invoke(MethodInvocation methodInvocation) throws Throwable {
+                                return "proxyFactory test>>>>>>>>>>>>>>xupei>>>>>>>>>>.";
+                            }
+                        });
+                        proxyFactory.setFrozen(true);
+                        proxyFactory.setProxyTargetClass(false);
+                        obj = proxyFactory.getProxy();
+                        /*obj = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{field.getType()}, new InvocationHandler() {
+                            @Override
+                            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                                return "????????????测试???????xupei?????";
+                            }
+                        });*/
+                        beanFactory.registerSingleton(field.getName(), obj);
+                    }
+                    ReflectionUtils.makeAccessible(field);
+                    ReflectionUtils.setField(field, target, obj);
                     beanToProcess.put(beanName, clazz);
                 }
             }
-
             clazz = clazz.getSuperclass();
         }
         return bean;
@@ -77,6 +104,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+/*
 
         //如果不存在 直接返回
         if (!beanToProcess.containsKey(beanName)) {
@@ -115,6 +143,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
             ReflectionUtils.makeAccessible(field);
             ReflectionUtils.setField(field, target, proxyFactory.getProxy());
         }
+*/
 
         return bean;
     }
