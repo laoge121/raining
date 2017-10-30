@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class EtcdNotificationUpdater implements ServerListUpdater {
 
     private static final Logger logger = LoggerFactory.getLogger(EtcdNotificationUpdater.class);
-    
+
     private static class LazyHolder {
 
         private static final ExecutorService DEFAULT_SERVER_LIST_UPDATE_EXECUTOR = Executors.newCachedThreadPool(new RainThreadFactory("EtcdNotificationUpdater-thread", true));
@@ -64,7 +64,7 @@ public class EtcdNotificationUpdater implements ServerListUpdater {
 
     public EtcdNotificationUpdater(EtcdClient etcdClient, String listenPath, ExecutorService refreshExecutor) {
         this.refreshExecutor = refreshExecutor;
-        this.listenPath = RainConstants.LOAD_SERVER_PATH + listenPath;
+        this.listenPath = RainConstants.LOAD_SERVER_PATH + "/" + listenPath;
         this.etcdClient = etcdClient;
     }
 

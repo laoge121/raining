@@ -62,22 +62,21 @@ public class RainServerList extends AbstractServerList<RainServer> {
 
         //for (String appName : serverList) {
         try {
-            String basePath = RainConstants.LOAD_SERVER_PATH + appName;
+            String basePath = RainConstants.LOAD_SERVER_PATH + "/" + appName;
             EtcdKeysResponse response = etcdClient.get(basePath).send().get();
 
             if (CollectionUtils.isEmpty(response.getNode().getNodes())) {
                 logger.info("app " + appName + "no available server !");
                 return Lists.newArrayList();
             }
-            //rain-server-raining/172.18.53.24:2181
-            for (EtcdKeysResponse.EtcdNode node : response.getNode().getNodes()) {
 
-                String path = node.getKey();
-                path = path.replaceAll(basePath + "/", "");
+            String paths[] = response.getNode().getValue().split(";");
+            for (String path : paths) {
                 String address[] = path.split(":");
                 String ip = address[0];
                 String port = address[1];
-                RainServer rainServer = new RainServer(appName, appName, ip, Integer.valueOf(port));
+                String[] uris = appName.split(".");
+                RainServer rainServer = new RainServer(uris[1], uris[2], ip, Integer.valueOf(port));
                 retList.add(rainServer);
             }
 

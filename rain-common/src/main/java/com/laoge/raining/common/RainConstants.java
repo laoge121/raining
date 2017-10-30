@@ -7,6 +7,6 @@ package com.laoge.raining.common;
 public class RainConstants {
 
     //服务根目录
-    public static final String LOAD_SERVER_PATH = "rain-server-";
+    public static final String LOAD_SERVER_PATH = "rain-server-raining";
 
 }

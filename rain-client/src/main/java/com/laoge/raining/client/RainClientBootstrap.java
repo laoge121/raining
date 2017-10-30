@@ -1,12 +1,16 @@
 package com.laoge.raining.client;
 
-import com.google.common.collect.Maps;
+import com.google.common.collect.Lists;
 import com.laoge.raining.client.annotation.RainClient;
 import com.laoge.raining.client.invoke.InvokeService;
 import com.laoge.raining.client.router.DirectAlgorithm;
 import com.laoge.raining.client.router.Node;
 import com.laoge.raining.client.router.RibbonAlgorithm;
 import com.laoge.raining.client.router.RouterAlgorithm;
+import com.laoge.raining.common.route.RainRequest;
+import com.laoge.raining.common.route.RainRequestParam;
+import com.laoge.raining.common.route.RainResponse;
+import com.laoge.raining.common.route.RouteService;
 import com.laoge.raining.common.serialize.KryoUtil;
 import mousio.etcd4j.EtcdClient;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -31,10 +35,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.util.Map;
+import java.util.List;
 
 /**
  * 扫描需要监听的bean 数据进行数据初始化
@@ -47,10 +48,10 @@ public class RainClientBootstrap implements BeanPostProcessor {
     private static final Logger logger = LoggerFactory.getLogger(RainClientBootstrap.class);
 
     //用于存储 调用服务的类信息
-    private static final Map<String, Class> beanToProcess = Maps.newHashMap();
+    // private static final Map<String, Class> beanToProcess = Maps.newHashMap();
 
     //存储实例化的bean
-    private static final Map<String, RainClientBean> rainClientMap = Maps.newConcurrentMap();
+    //private static final Map<String, RainClientBean> rainClientMap = Maps.newConcurrentMap();
 
     @Resource
     private DefaultListableBeanFactory beanFactory;
@@ -65,16 +66,27 @@ public class RainClientBootstrap implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Class clazz = bean.getClass();
         Object target = getTargetBean(bean);
-        for (; clazz != null; ) {
-            for (Field field : clazz.getDeclaredFields()) {
-                if (field.isAnnotationPresent(RainClient.class)) {
-                    Object obj = null;
-                    try {
-                        obj = beanFactory.getBean(field.getName());
-                    } catch (Exception e) {
-                        logger.error("not found {} so create one set BeanFactory.", field.getName());
-                    }
-                    if (null == obj) {
+        // for (; clazz != null; ) {
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.isAnnotationPresent(RainClient.class)) {
+                Object obj = null;
+
+                if (beanFactory.containsSingleton(field.getName())) {
+                    obj = beanFactory.getBean(field.getName());
+                    ReflectionUtils.makeAccessible(field);
+                    ReflectionUtils.setField(field, target, obj);
+                    continue;
+                }
+                RainClient rainClient = field.getAnnotation(RainClient.class);
+                RainClientBean rainClientBean = this.createRainClientBean(field, rainClient);
+                ProxyFactory proxyFactory = createFieldProxyFactory(target, field.getType(), field.getName());
+                addProxyFactoryAdvice(proxyFactory, rainClientBean);
+                proxyFactory.setFrozen(true);
+                proxyFactory.setProxyTargetClass(false);
+
+                ReflectionUtils.makeAccessible(field);
+                ReflectionUtils.setField(field, target, obj);
+                   /* if (null == obj) {
                         ProxyFactory proxyFactory = new ProxyFactory(field.getType(), new MethodInterceptor() {
                             @Override
                             public Object invoke(MethodInvocation methodInvocation) throws Throwable {
@@ -84,21 +96,19 @@ public class RainClientBootstrap implements BeanPostProcessor {
                         proxyFactory.setFrozen(true);
                         proxyFactory.setProxyTargetClass(false);
                         obj = proxyFactory.getProxy();
-                        /*obj = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{field.getType()}, new InvocationHandler() {
+                        *//*obj = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{field.getType()}, new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                                 return "????????????测试???????xupei?????";
                             }
-                        });*/
+                        });*//*
                         beanFactory.registerSingleton(field.getName(), obj);
-                    }
-                    ReflectionUtils.makeAccessible(field);
-                    ReflectionUtils.setField(field, target, obj);
-                    beanToProcess.put(beanName, clazz);
-                }
+                    }*/
+
             }
-            clazz = clazz.getSuperclass();
         }
+        // clazz = clazz.getSuperclass();
+        //}
         return bean;
     }
 
@@ -167,20 +177,29 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
                     TProtocol tProtocol = new TBinaryProtocol(tTransport, true, true);
 
-                    InvokeService.Client client = new InvokeService.Client(tProtocol);
+                    RouteService.Client client = new RouteService.Client(tProtocol);
 
                     Object objs[] = invocation.getArguments();
                     StringBuilder sb = new StringBuilder("");
                     for (Object obj : objs) {
                         sb.append(KryoUtil.writeObjectToString(obj) + "@^@");
                     }
-                    String ret = client.invoke(1, "code", invocation.getThis().getClass().getTypeName(), invocation.getMethod().getName(), sb.toString());
-
-                    if (StringUtils.isEmpty(ret)) {
-                        throw new RuntimeException("request exception error::" + ret);
+                    RainRequest rainRequest = new RainRequest();
+                    rainRequest.setClassRUI(invocation.getClass().getCanonicalName());
+                    rainRequest.setClassName(invocation.getClass().getName());
+                    rainRequest.setMethodName(invocation.getMethod().getName());
+                    List<RainRequestParam> paramList = Lists.newArrayList();
+                    for (Object param : invocation.getArguments()) {
+                        RainRequestParam rainRequestParam = new RainRequestParam();
+                        String data = KryoUtil.writeObjectToString(param);
+                        rainRequestParam.setBody(data);
+                        rainRequestParam.setClassName(param.getClass().getName());
+                        rainRequestParam.setClassRUI(param.getClass().getCanonicalName());
+                        paramList.add(rainRequestParam);
                     }
-
-                    result = KryoUtil.readFromString(ret);
+                    rainRequest.setParamList(paramList);
+                    RainResponse response = client.route(rainRequest);
+                    result = KryoUtil.readObjectFromString(response.getResponseBody().getBody(), Class.forName(response.getResponseHead().getClassRUI()));
                     break;
                 }
 
@@ -201,7 +220,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
         ProxyFactory proxyFactory = null;
         try {
-            proxyFactory = new ProxyFactory(BeanUtils.instantiateClass(type));
+            proxyFactory = new ProxyFactory(type);
         } catch (Exception e) {
             logger.error("create:{}:{}proxy factory exception {}", target, name, e);
             throw new RuntimeException("create:" + target + ":" + name + "proxy factory exception {}", e);
@@ -216,11 +235,11 @@ public class RainClientBootstrap implements BeanPostProcessor {
      * @param rainClient
      * @return
      */
-    public RainClientBean createRainClientBean(RainClient rainClient) {
+    public RainClientBean createRainClientBean(Field field, RainClient rainClient) {
         RainClientBean rainClientBean = new RainClientBean();
         RouterAlgorithm router;
         if (StringUtils.isEmpty(rainClient.address())) {
-            router = new RibbonAlgorithm(rainClient.appname(), etcdClient);
+            router = new RibbonAlgorithm(field.getClass().getCanonicalName(), etcdClient);
         } else {
             router = new DirectAlgorithm(rainClient.address());
         }

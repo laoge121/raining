@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Inherited
 public @interface RainClient {
 
-    String appname();//调用的业务方app 名称
+    String appname() default "";//调用的业务方app 名称
 
     String address() default "";
 
