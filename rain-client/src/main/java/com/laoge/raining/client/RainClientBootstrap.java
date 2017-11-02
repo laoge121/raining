@@ -2,7 +2,6 @@ package com.laoge.raining.client;
 
 import com.google.common.collect.Lists;
 import com.laoge.raining.client.annotation.RainClient;
-import com.laoge.raining.client.invoke.InvokeService;
 import com.laoge.raining.client.router.DirectAlgorithm;
 import com.laoge.raining.client.router.Node;
 import com.laoge.raining.client.router.RibbonAlgorithm;
@@ -24,7 +23,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.AopUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -85,7 +83,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
                 proxyFactory.setProxyTargetClass(false);
 
                 ReflectionUtils.makeAccessible(field);
-                ReflectionUtils.setField(field, target, obj);
+                ReflectionUtils.setField(field, target, proxyFactory.getProxy());
                    /* if (null == obj) {
                         ProxyFactory proxyFactory = new ProxyFactory(field.getType(), new MethodInterceptor() {
                             @Override
@@ -220,7 +218,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
         ProxyFactory proxyFactory = null;
         try {
-            proxyFactory = new ProxyFactory(type);
+            proxyFactory = new ProxyFactory(new Class[]{type});
         } catch (Exception e) {
             logger.error("create:{}:{}proxy factory exception {}", target, name, e);
             throw new RuntimeException("create:" + target + ":" + name + "proxy factory exception {}", e);
@@ -239,7 +237,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
         RainClientBean rainClientBean = new RainClientBean();
         RouterAlgorithm router;
         if (StringUtils.isEmpty(rainClient.address())) {
-            router = new RibbonAlgorithm(field.getClass().getCanonicalName(), etcdClient);
+            router = new RibbonAlgorithm(field.getType().getTypeName(), etcdClient);
         } else {
             router = new DirectAlgorithm(rainClient.address());
         }

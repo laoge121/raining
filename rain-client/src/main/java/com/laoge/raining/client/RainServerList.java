@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class RainServerList extends AbstractServerList<RainServer> {
     private String appName;
 
     //注册订阅的服务列表
-    private List<String> serverList = Lists.newArrayList();
+    //private List<String> serverList = null;
 
     public RainServerList(EtcdClient etcdClient, String appName) {
         this.etcdClient = etcdClient;
@@ -53,19 +54,18 @@ public class RainServerList extends AbstractServerList<RainServer> {
             logger.warn("no available etcdClient server !");
             return Lists.newArrayList();
         }
-        if (CollectionUtils.isEmpty(serverList)) {
+        /*if (null != serverList && serverList.size() < 1) {
             logger.warn("no subscribe  server list!");
             return Lists.newArrayList();
-        }
+        }*/
 
         List<RainServer> retList = Lists.newArrayList();
 
-        //for (String appName : serverList) {
         try {
             String basePath = RainConstants.LOAD_SERVER_PATH + "/" + appName;
             EtcdKeysResponse response = etcdClient.get(basePath).send().get();
 
-            if (CollectionUtils.isEmpty(response.getNode().getNodes())) {
+            if (StringUtils.isEmpty(response.getNode().getValue())) {
                 logger.info("app " + appName + "no available server !");
                 return Lists.newArrayList();
             }
@@ -75,7 +75,7 @@ public class RainServerList extends AbstractServerList<RainServer> {
                 String address[] = path.split(":");
                 String ip = address[0];
                 String port = address[1];
-                String[] uris = appName.split(".");
+                String[] uris = appName.split("\\.");
                 RainServer rainServer = new RainServer(uris[1], uris[2], ip, Integer.valueOf(port));
                 retList.add(rainServer);
             }
@@ -85,7 +85,6 @@ public class RainServerList extends AbstractServerList<RainServer> {
             return Lists.newArrayList();
         }
 
-        // }
         return retList;
     }
 }

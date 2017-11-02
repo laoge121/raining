@@ -58,7 +58,13 @@ public class RainContextInitialization implements BeanPostProcessor {
      */
     public void rainContentInitinalication(Object o, String s) {
 
-        applicationContentInitializer.beanMappingContent(o.getClass().getTypeName(), s);
+        if (o.getClass().getInterfaces().length < 1) {
+            throw new RuntimeException("this class no define interface!" + o.getClass().getTypeName());
+        }
+
+        Class clazz = o.getClass().getInterfaces()[0];
+
+        applicationContentInitializer.beanMappingContent(clazz.getTypeName(), s);
         logger.info("init rain content bean name:{},class:{}", s, o);
 
     }

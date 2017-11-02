@@ -1,5 +1,5 @@
 namespace java com.laoge.raining.server.invoke
-
+namespace go rainrpc
 
 struct RainRequestParam {
    1:string classRUI;

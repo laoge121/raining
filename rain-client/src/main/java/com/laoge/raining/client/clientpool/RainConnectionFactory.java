@@ -8,6 +8,8 @@ import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -20,6 +22,8 @@ import java.util.Map;
  */
 @Component("rainConnectionFactory")
 public class RainConnectionFactory extends BaseKeyedPooledObjectFactory<Node, TTransport> {
+
+    private static final Logger logger = LoggerFactory.getLogger(RainConnectionFactory.class);
 
     private static final Map<String, Long> forbidMap = Maps.newConcurrentMap();
 
@@ -46,11 +50,13 @@ public class RainConnectionFactory extends BaseKeyedPooledObjectFactory<Node, TT
     @Override
     public TTransport create(Node node) throws Exception {
 
+        logger.info("connection Factory transport info :{}", node);
+
         if (null == node) {
             throw new RuntimeException("获取链接节点接口数据为空!");
         }
         Assert.isTrue(!StringUtils.isEmpty(node.getIp()), "ip不能为空!");
-        Assert.isTrue(node.getPort() < 1, "端口不能为空!");
+       // Assert.isTrue(node.getPort() < 1, "端口不能为空!");
 
         TTransport tTransport = null;
         String address = node.getIp() + ":" + node.getPort();
