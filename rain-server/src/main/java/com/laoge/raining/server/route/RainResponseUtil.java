@@ -22,7 +22,7 @@ public class RainResponseUtil implements Serializable {
         rainResponseBody.setBody(KryoUtil.writeObjectToString(object));
         RainResponseHead rainResponseHead = new RainResponseHead();
         rainResponseHead.setClassName(object.getClass().getName());
-        rainResponseHead.setClassRUI(object.getClass().getTypeName());
+        rainResponseHead.setClassURI(object.getClass().getTypeName());
         RainResponse rainResponse = new RainResponse();
         rainResponse.setResponseBody(rainResponseBody);
         rainResponse.setResponseHead(rainResponseHead);
@@ -39,7 +39,7 @@ public class RainResponseUtil implements Serializable {
         rainResponseBody.setBody(object);
         RainResponseHead rainResponseHead = new RainResponseHead();
         rainResponseHead.setClassName("String");
-        rainResponseHead.setClassRUI("java.lang.String");
+        rainResponseHead.setClassURI("java.lang.String");
         RainResponse rainResponse = new RainResponse();
         rainResponse.setResponseBody(rainResponseBody);
         rainResponse.setResponseHead(rainResponseHead);

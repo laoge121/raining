@@ -36,10 +36,10 @@ public class RouteServiceImpl implements RouteService.Iface {
 
         logger.info("request param RainRequst: {}", rainRequest);
 
-        if (StringUtils.isEmpty(rainRequest.getClassRUI())) {
+        if (StringUtils.isEmpty(rainRequest.getClassURI())) {
             throw new RuntimeException("路径参数异常!");
         }
-        Object object = rainApplicationContext.getBean(rainRequest.getClassRUI());
+        Object object = rainApplicationContext.getBean(rainRequest.getClassURI());
         //BeanUtil.getBean(rainRequest.getClassName());
 
         Class[] args = null;
@@ -51,7 +51,7 @@ public class RouteServiceImpl implements RouteService.Iface {
                 int i = 0;
                 for (; iterator.hasNext(); ) {
                     RainRequestParam param = iterator.next();
-                    Class clazz = Class.forName(param.getClassRUI());
+                    Class clazz = Class.forName(param.getClassURI());
                     Object obj = KryoUtil.readObjectFromString(param.getBody(), clazz);
                     paramList.add(obj);
                     args[i] = clazz;

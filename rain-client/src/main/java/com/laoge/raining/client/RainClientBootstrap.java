@@ -184,7 +184,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
                     }*/
                     RainRequest rainRequest = new RainRequest();
 
-                    rainRequest.setClassRUI(invocation.getMethod().getDeclaringClass().getTypeName());
+                    rainRequest.setClassURI(invocation.getMethod().getDeclaringClass().getTypeName());
                     rainRequest.setClassName(invocation.getMethod().getDeclaringClass().getSimpleName());
                     rainRequest.setMethodName(invocation.getMethod().getName());
                     List<RainRequestParam> paramList = Lists.newArrayList();
@@ -193,12 +193,12 @@ public class RainClientBootstrap implements BeanPostProcessor {
                         String data = KryoUtil.writeObjectToString(param);
                         rainRequestParam.setBody(data);
                         rainRequestParam.setClassName(param.getClass().getName());
-                        rainRequestParam.setClassRUI(param.getClass().getCanonicalName());
+                        rainRequestParam.setClassURI(param.getClass().getCanonicalName());
                         paramList.add(rainRequestParam);
                     }
                     rainRequest.setParamList(paramList);
                     RainResponse response = client.execute(rainRequest);
-                    result = KryoUtil.readObjectFromString(response.getResponseBody().getBody(), Class.forName(response.getResponseHead().getClassRUI()));
+                    result = KryoUtil.readObjectFromString(response.getResponseBody().getBody(), Class.forName(response.getResponseHead().getClassURI()));
                     break;
                 }
 
