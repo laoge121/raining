@@ -11,24 +11,21 @@ package com.laoge.raining.common.route;
 public class RainRequestParam implements org.apache.thrift.TBase<RainRequestParam, RainRequestParam._Fields>, java.io.Serializable, Cloneable, Comparable<RainRequestParam> {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("RainRequestParam");
 
-  private static final org.apache.thrift.protocol.TField CLASS_RUI_FIELD_DESC = new org.apache.thrift.protocol.TField("classRUI", org.apache.thrift.protocol.TType.STRING, (short)1);
+  private static final org.apache.thrift.protocol.TField CLASS_URI_FIELD_DESC = new org.apache.thrift.protocol.TField("classURI", org.apache.thrift.protocol.TType.STRING, (short)1);
   private static final org.apache.thrift.protocol.TField CLASS_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("className", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField METHOD_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("methodName", org.apache.thrift.protocol.TType.STRING, (short)3);
   private static final org.apache.thrift.protocol.TField BODY_FIELD_DESC = new org.apache.thrift.protocol.TField("body", org.apache.thrift.protocol.TType.STRING, (short)4);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new RainRequestParamStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new RainRequestParamTupleSchemeFactory();
 
-  public String classRUI; // required
+  public String classURI; // required
   public String className; // required
-  public String methodName; // required
   public String body; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    CLASS_RUI((short)1, "classRUI"),
+    CLASS_URI((short)1, "classURI"),
     CLASS_NAME((short)2, "className"),
-    METHOD_NAME((short)3, "methodName"),
     BODY((short)4, "body");
 
     private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
@@ -44,12 +41,10 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // CLASS_RUI
-          return CLASS_RUI;
+        case 1: // CLASS_URI
+          return CLASS_URI;
         case 2: // CLASS_NAME
           return CLASS_NAME;
-        case 3: // METHOD_NAME
-          return METHOD_NAME;
         case 4: // BODY
           return BODY;
         default:
@@ -95,11 +90,9 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.CLASS_RUI, new org.apache.thrift.meta_data.FieldMetaData("classRUI", org.apache.thrift.TFieldRequirementType.DEFAULT,
+    tmpMap.put(_Fields.CLASS_URI, new org.apache.thrift.meta_data.FieldMetaData("classURI", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CLASS_NAME, new org.apache.thrift.meta_data.FieldMetaData("className", org.apache.thrift.TFieldRequirementType.DEFAULT,
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.METHOD_NAME, new org.apache.thrift.meta_data.FieldMetaData("methodName", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.BODY, new org.apache.thrift.meta_data.FieldMetaData("body", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
@@ -111,15 +104,13 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
   }
 
   public RainRequestParam(
-    String classRUI,
+    String classURI,
     String className,
-    String methodName,
     String body)
   {
     this();
-    this.classRUI = classRUI;
+    this.classURI = classURI;
     this.className = className;
-    this.methodName = methodName;
     this.body = body;
   }
 
@@ -127,14 +118,11 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
    * Performs a deep copy on <i>other</i>.
    */
   public RainRequestParam(RainRequestParam other) {
-    if (other.isSetClassRUI()) {
-      this.classRUI = other.classRUI;
+    if (other.isSetClassURI()) {
+      this.classURI = other.classURI;
     }
     if (other.isSetClassName()) {
       this.className = other.className;
-    }
-    if (other.isSetMethodName()) {
-      this.methodName = other.methodName;
     }
     if (other.isSetBody()) {
       this.body = other.body;
@@ -147,33 +135,32 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
 
   @Override
   public void clear() {
-    this.classRUI = null;
+    this.classURI = null;
     this.className = null;
-    this.methodName = null;
     this.body = null;
   }
 
-  public String getClassRUI() {
-    return this.classRUI;
+  public String getClassURI() {
+    return this.classURI;
   }
 
-  public RainRequestParam setClassRUI(String classRUI) {
-    this.classRUI = classRUI;
+  public RainRequestParam setClassURI(String classURI) {
+    this.classURI = classURI;
     return this;
   }
 
-  public void unsetClassRUI() {
-    this.classRUI = null;
+  public void unsetClassURI() {
+    this.classURI = null;
   }
 
-  /** Returns true if field classRUI is set (has been assigned a value) and false otherwise */
-  public boolean isSetClassRUI() {
-    return this.classRUI != null;
+  /** Returns true if field classURI is set (has been assigned a value) and false otherwise */
+  public boolean isSetClassURI() {
+    return this.classURI != null;
   }
 
-  public void setClassRUIIsSet(boolean value) {
+  public void setClassURIIsSet(boolean value) {
     if (!value) {
-      this.classRUI = null;
+      this.classURI = null;
     }
   }
 
@@ -198,30 +185,6 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
   public void setClassNameIsSet(boolean value) {
     if (!value) {
       this.className = null;
-    }
-  }
-
-  public String getMethodName() {
-    return this.methodName;
-  }
-
-  public RainRequestParam setMethodName(String methodName) {
-    this.methodName = methodName;
-    return this;
-  }
-
-  public void unsetMethodName() {
-    this.methodName = null;
-  }
-
-  /** Returns true if field methodName is set (has been assigned a value) and false otherwise */
-  public boolean isSetMethodName() {
-    return this.methodName != null;
-  }
-
-  public void setMethodNameIsSet(boolean value) {
-    if (!value) {
-      this.methodName = null;
     }
   }
 
@@ -251,11 +214,11 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
 
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
-    case CLASS_RUI:
+    case CLASS_URI:
       if (value == null) {
-        unsetClassRUI();
+        unsetClassURI();
       } else {
-        setClassRUI((String)value);
+        setClassURI((String)value);
       }
       break;
 
@@ -264,14 +227,6 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
         unsetClassName();
       } else {
         setClassName((String)value);
-      }
-      break;
-
-    case METHOD_NAME:
-      if (value == null) {
-        unsetMethodName();
-      } else {
-        setMethodName((String)value);
       }
       break;
 
@@ -288,14 +243,11 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
 
   public Object getFieldValue(_Fields field) {
     switch (field) {
-    case CLASS_RUI:
-      return getClassRUI();
+    case CLASS_URI:
+      return getClassURI();
 
     case CLASS_NAME:
       return getClassName();
-
-    case METHOD_NAME:
-      return getMethodName();
 
     case BODY:
       return getBody();
@@ -311,12 +263,10 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
     }
 
     switch (field) {
-    case CLASS_RUI:
-      return isSetClassRUI();
+    case CLASS_URI:
+      return isSetClassURI();
     case CLASS_NAME:
       return isSetClassName();
-    case METHOD_NAME:
-      return isSetMethodName();
     case BODY:
       return isSetBody();
     }
@@ -338,12 +288,12 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
     if (this == that)
       return true;
 
-    boolean this_present_classRUI = true && this.isSetClassRUI();
-    boolean that_present_classRUI = true && that.isSetClassRUI();
-    if (this_present_classRUI || that_present_classRUI) {
-      if (!(this_present_classRUI && that_present_classRUI))
+    boolean this_present_classURI = true && this.isSetClassURI();
+    boolean that_present_classURI = true && that.isSetClassURI();
+    if (this_present_classURI || that_present_classURI) {
+      if (!(this_present_classURI && that_present_classURI))
         return false;
-      if (!this.classRUI.equals(that.classRUI))
+      if (!this.classURI.equals(that.classURI))
         return false;
     }
 
@@ -353,15 +303,6 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
       if (!(this_present_className && that_present_className))
         return false;
       if (!this.className.equals(that.className))
-        return false;
-    }
-
-    boolean this_present_methodName = true && this.isSetMethodName();
-    boolean that_present_methodName = true && that.isSetMethodName();
-    if (this_present_methodName || that_present_methodName) {
-      if (!(this_present_methodName && that_present_methodName))
-        return false;
-      if (!this.methodName.equals(that.methodName))
         return false;
     }
 
@@ -381,17 +322,13 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
   public int hashCode() {
     int hashCode = 1;
 
-    hashCode = hashCode * 8191 + ((isSetClassRUI()) ? 131071 : 524287);
-    if (isSetClassRUI())
-      hashCode = hashCode * 8191 + classRUI.hashCode();
+    hashCode = hashCode * 8191 + ((isSetClassURI()) ? 131071 : 524287);
+    if (isSetClassURI())
+      hashCode = hashCode * 8191 + classURI.hashCode();
 
     hashCode = hashCode * 8191 + ((isSetClassName()) ? 131071 : 524287);
     if (isSetClassName())
       hashCode = hashCode * 8191 + className.hashCode();
-
-    hashCode = hashCode * 8191 + ((isSetMethodName()) ? 131071 : 524287);
-    if (isSetMethodName())
-      hashCode = hashCode * 8191 + methodName.hashCode();
 
     hashCode = hashCode * 8191 + ((isSetBody()) ? 131071 : 524287);
     if (isSetBody())
@@ -408,12 +345,12 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
 
     int lastComparison = 0;
 
-    lastComparison = Boolean.valueOf(isSetClassRUI()).compareTo(other.isSetClassRUI());
+    lastComparison = Boolean.valueOf(isSetClassURI()).compareTo(other.isSetClassURI());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetClassRUI()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.classRUI, other.classRUI);
+    if (isSetClassURI()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.classURI, other.classURI);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -424,16 +361,6 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
     }
     if (isSetClassName()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.className, other.className);
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-    }
-    lastComparison = Boolean.valueOf(isSetMethodName()).compareTo(other.isSetMethodName());
-    if (lastComparison != 0) {
-      return lastComparison;
-    }
-    if (isSetMethodName()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.methodName, other.methodName);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -468,11 +395,11 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
     StringBuilder sb = new StringBuilder("RainRequestParam(");
     boolean first = true;
 
-    sb.append("classRUI:");
-    if (this.classRUI == null) {
+    sb.append("classURI:");
+    if (this.classURI == null) {
       sb.append("null");
     } else {
-      sb.append(this.classRUI);
+      sb.append(this.classURI);
     }
     first = false;
     if (!first) sb.append(", ");
@@ -481,14 +408,6 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
       sb.append("null");
     } else {
       sb.append(this.className);
-    }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("methodName:");
-    if (this.methodName == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.methodName);
     }
     first = false;
     if (!first) sb.append(", ");
@@ -542,10 +461,10 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
           break;
         }
         switch (schemeField.id) {
-          case 1: // CLASS_RUI
+          case 1: // CLASS_URI
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.classRUI = iprot.readString();
-              struct.setClassRUIIsSet(true);
+              struct.classURI = iprot.readString();
+              struct.setClassURIIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -554,14 +473,6 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.className = iprot.readString();
               struct.setClassNameIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 3: // METHOD_NAME
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.methodName = iprot.readString();
-              struct.setMethodNameIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -589,19 +500,14 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
-      if (struct.classRUI != null) {
-        oprot.writeFieldBegin(CLASS_RUI_FIELD_DESC);
-        oprot.writeString(struct.classRUI);
+      if (struct.classURI != null) {
+        oprot.writeFieldBegin(CLASS_URI_FIELD_DESC);
+        oprot.writeString(struct.classURI);
         oprot.writeFieldEnd();
       }
       if (struct.className != null) {
         oprot.writeFieldBegin(CLASS_NAME_FIELD_DESC);
         oprot.writeString(struct.className);
-        oprot.writeFieldEnd();
-      }
-      if (struct.methodName != null) {
-        oprot.writeFieldBegin(METHOD_NAME_FIELD_DESC);
-        oprot.writeString(struct.methodName);
         oprot.writeFieldEnd();
       }
       if (struct.body != null) {
@@ -627,27 +533,21 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
     public void write(org.apache.thrift.protocol.TProtocol prot, RainRequestParam struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
       java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetClassRUI()) {
+      if (struct.isSetClassURI()) {
         optionals.set(0);
       }
       if (struct.isSetClassName()) {
         optionals.set(1);
       }
-      if (struct.isSetMethodName()) {
+      if (struct.isSetBody()) {
         optionals.set(2);
       }
-      if (struct.isSetBody()) {
-        optionals.set(3);
-      }
-      oprot.writeBitSet(optionals, 4);
-      if (struct.isSetClassRUI()) {
-        oprot.writeString(struct.classRUI);
+      oprot.writeBitSet(optionals, 3);
+      if (struct.isSetClassURI()) {
+        oprot.writeString(struct.classURI);
       }
       if (struct.isSetClassName()) {
         oprot.writeString(struct.className);
-      }
-      if (struct.isSetMethodName()) {
-        oprot.writeString(struct.methodName);
       }
       if (struct.isSetBody()) {
         oprot.writeString(struct.body);
@@ -657,20 +557,16 @@ public class RainRequestParam implements org.apache.thrift.TBase<RainRequestPara
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, RainRequestParam struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(4);
+      java.util.BitSet incoming = iprot.readBitSet(3);
       if (incoming.get(0)) {
-        struct.classRUI = iprot.readString();
-        struct.setClassRUIIsSet(true);
+        struct.classURI = iprot.readString();
+        struct.setClassURIIsSet(true);
       }
       if (incoming.get(1)) {
         struct.className = iprot.readString();
         struct.setClassNameIsSet(true);
       }
       if (incoming.get(2)) {
-        struct.methodName = iprot.readString();
-        struct.setMethodNameIsSet(true);
-      }
-      if (incoming.get(3)) {
         struct.body = iprot.readString();
         struct.setBodyIsSet(true);
       }

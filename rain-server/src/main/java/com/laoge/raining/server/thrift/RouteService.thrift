@@ -2,14 +2,13 @@ namespace java com.laoge.raining.common.route
 namespace go rainrpc
 
 struct RainRequestParam {
-   1:string classRUI;
+   1:string classURI;
    2:string className;
-   3:string methodName;
    4:string body;
 }
 
 struct RainRequest {
-   1:string classRUI;
+   1:string classURI;
    2:string className;
    3:string methodName;
    4:string body;
@@ -17,9 +16,8 @@ struct RainRequest {
 }
 
 struct RainResponseHead{
-1:string classRUI;
+1:string classURI;
 2:string className;
-3:string methodName;
 }
 struct RainResponseBody{
 1:string body;

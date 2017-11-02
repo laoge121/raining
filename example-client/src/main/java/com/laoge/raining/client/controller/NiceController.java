@@ -1,5 +1,6 @@
 package com.laoge.raining.client.controller;
 
+import com.laoge.raining.api.entity.Person;
 import com.laoge.raining.api.example.NiceService;
 import com.laoge.raining.client.annotation.RainClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,9 @@ public class NiceController {
 
     @RequestMapping("/nice")
     public String nice() {
-        String str = niceService.sayNice();
+        Person person  = new Person();
+        person.setName("ketty");
+        String str = niceService.sayNice(person);
         return str;
     }
 }
