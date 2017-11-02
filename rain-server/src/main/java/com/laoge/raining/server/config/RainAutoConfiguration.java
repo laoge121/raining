@@ -1,9 +1,11 @@
 package com.laoge.raining.server.config;
 
 import com.laoge.raining.common.RainThreadFactory;
+import com.laoge.raining.common.route.RouteService;
 import com.laoge.raining.server.exception.RainServerException;
 import com.laoge.raining.server.invoke.InvokeService;
 import com.laoge.raining.server.invoke.InvokeServiceImpl;
+import com.laoge.raining.server.route.RouteServiceImpl;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;
@@ -67,8 +69,8 @@ public class RainAutoConfiguration implements ApplicationContextAware {
     }
 
     public TProcessor processor() {
-        InvokeServiceImpl teslaService = (InvokeServiceImpl) this.applicationContext.getBean("rainInvokeService");
-        InvokeService.Processor<InvokeService.Iface> processor = new InvokeService.Processor<InvokeService.Iface>(teslaService);
+        RouteServiceImpl teslaService = (RouteServiceImpl) this.applicationContext.getBean("routeService");
+        RouteService.Processor<RouteService.Iface> processor = new RouteService.Processor(teslaService);
         return processor;
     }
 

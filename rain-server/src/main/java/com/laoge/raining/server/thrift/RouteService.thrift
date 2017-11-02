@@ -1,4 +1,4 @@
-namespace java com.laoge.raining.server.invoke
+namespace java com.laoge.raining.common.route
 namespace go rainrpc
 
 struct RainRequestParam {
@@ -32,6 +32,6 @@ struct RainResponse {
 //服务端 客户端转换
 service RouteService{
 
-    RainResponse route(1:RainRequest rainRequest);
+    RainResponse execute(1:RainRequest rainRequest);
 
 }

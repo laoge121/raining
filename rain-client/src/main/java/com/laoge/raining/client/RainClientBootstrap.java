@@ -177,14 +177,15 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
                     RouteService.Client client = new RouteService.Client(tProtocol);
 
-                    Object objs[] = invocation.getArguments();
-                    StringBuilder sb = new StringBuilder("");
+                   /*  Object objs[] = invocation.getArguments();
+                   StringBuilder sb = new StringBuilder("");
                     for (Object obj : objs) {
                         sb.append(KryoUtil.writeObjectToString(obj) + "@^@");
-                    }
+                    }*/
                     RainRequest rainRequest = new RainRequest();
-                    rainRequest.setClassRUI(invocation.getClass().getCanonicalName());
-                    rainRequest.setClassName(invocation.getClass().getName());
+
+                    rainRequest.setClassRUI(invocation.getMethod().getDeclaringClass().getTypeName());
+                    rainRequest.setClassName(invocation.getMethod().getDeclaringClass().getSimpleName());
                     rainRequest.setMethodName(invocation.getMethod().getName());
                     List<RainRequestParam> paramList = Lists.newArrayList();
                     for (Object param : invocation.getArguments()) {
@@ -196,7 +197,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
                         paramList.add(rainRequestParam);
                     }
                     rainRequest.setParamList(paramList);
-                    RainResponse response = client.route(rainRequest);
+                    RainResponse response = client.execute(rainRequest);
                     result = KryoUtil.readObjectFromString(response.getResponseBody().getBody(), Class.forName(response.getResponseHead().getClassRUI()));
                     break;
                 }

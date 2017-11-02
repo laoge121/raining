@@ -6,13 +6,16 @@ import com.laoge.raining.common.route.RainRequestParam;
 import com.laoge.raining.common.route.RainResponse;
 import com.laoge.raining.common.route.RouteService;
 import com.laoge.raining.common.serialize.KryoUtil;
+import com.laoge.raining.server.context.RainApplicationContext;
 import com.laoge.raining.server.util.BeanUtil;
 import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
@@ -20,18 +23,24 @@ import java.util.List;
 /**
  * 路由实现
  */
+@Component("routeService")
 public class RouteServiceImpl implements RouteService.Iface {
 
     private static final Logger logger = LoggerFactory.getLogger(RouteServiceImpl.class);
+
+    @Resource
+    private RainApplicationContext rainApplicationContext;
+
     @Override
-    public RainResponse route(RainRequest rainRequest) throws TException {
+    public RainResponse execute(RainRequest rainRequest) throws TException {
 
         logger.info("request param RainRequst: {}", rainRequest);
 
         if (StringUtils.isEmpty(rainRequest.getClassRUI())) {
             throw new RuntimeException("路径参数异常!");
         }
-        Object object = BeanUtil.getBean(rainRequest.getClassName());
+        Object object = rainApplicationContext.getBean(rainRequest.getClassRUI());
+        //BeanUtil.getBean(rainRequest.getClassName());
 
         Class[] args = null;
         List<Object> paramList = Lists.newArrayList();
@@ -39,13 +48,13 @@ public class RouteServiceImpl implements RouteService.Iface {
             try {
                 Iterator<RainRequestParam> iterator = rainRequest.getParamList().iterator();
                 args = new Class[rainRequest.getParamListSize()];
-                int i=0;
+                int i = 0;
                 for (; iterator.hasNext(); ) {
                     RainRequestParam param = iterator.next();
-                    Class clazz=   Class.forName(param.getClassRUI());
-                    Object obj= KryoUtil.readObjectFromString(param.getBody(),clazz);
+                    Class clazz = Class.forName(param.getClassRUI());
+                    Object obj = KryoUtil.readObjectFromString(param.getBody(), clazz);
                     paramList.add(obj);
-                    args[i]=clazz;
+                    args[i] = clazz;
                     i++;
                 }
             } catch (Exception e) {

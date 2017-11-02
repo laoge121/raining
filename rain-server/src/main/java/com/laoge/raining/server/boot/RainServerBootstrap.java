@@ -21,7 +21,7 @@ public class RainServerBootstrap implements SmartLifecycle {
 
     private final static Logger logger = LoggerFactory.getLogger(RainServerBootstrap.class);
 
-    private RainThreadFactory rainFactory = new RainThreadFactory("thrift-sever-start");
+    private RainThreadFactory rainFactory = new RainThreadFactory("thrift-sever-start",true);
 
     @Resource
     private TServer tServer;
