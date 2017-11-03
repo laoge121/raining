@@ -45,12 +45,6 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(RainClientBootstrap.class);
 
-    //用于存储 调用服务的类信息
-    // private static final Map<String, Class> beanToProcess = Maps.newHashMap();
-
-    //存储实例化的bean
-    //private static final Map<String, RainClientBean> rainClientMap = Maps.newConcurrentMap();
-
     @Resource
     private DefaultListableBeanFactory beanFactory;
 
@@ -64,7 +58,6 @@ public class RainClientBootstrap implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Class clazz = bean.getClass();
         Object target = getTargetBean(bean);
-        // for (; clazz != null; ) {
         for (Field field : clazz.getDeclaredFields()) {
             if (field.isAnnotationPresent(RainClient.class)) {
                 Object obj = null;
@@ -84,75 +77,13 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
                 ReflectionUtils.makeAccessible(field);
                 ReflectionUtils.setField(field, target, proxyFactory.getProxy());
-                   /* if (null == obj) {
-                        ProxyFactory proxyFactory = new ProxyFactory(field.getType(), new MethodInterceptor() {
-                            @Override
-                            public Object invoke(MethodInvocation methodInvocation) throws Throwable {
-                                return "proxyFactory test>>>>>>>>>>>>>>xupei>>>>>>>>>>.";
-                            }
-                        });
-                        proxyFactory.setFrozen(true);
-                        proxyFactory.setProxyTargetClass(false);
-                        obj = proxyFactory.getProxy();
-                        *//*obj = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{field.getType()}, new InvocationHandler() {
-                            @Override
-                            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                return "????????????测试???????xupei?????";
-                            }
-                        });*//*
-                        beanFactory.registerSingleton(field.getName(), obj);
-                    }*/
-
             }
         }
-        // clazz = clazz.getSuperclass();
-        //}
         return bean;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-/*
-
-        //如果不存在 直接返回
-        if (!beanToProcess.containsKey(beanName)) {
-            return bean;
-        }
-
-        //获取目标对象接口
-        Object target = getTargetBean(bean);
-
-        //获取引用的目标类
-        Class clazz = beanToProcess.get(beanName);
-
-        //获取所有使用@RianCient 注解的第三方服务
-        for (Field field : clazz.getDeclaredFields()) {
-            if (!field.isAnnotationPresent(RainClient.class)) {
-                continue;
-            }
-            RainClient rainClient = field.getAnnotation(RainClient.class);
-
-            if (beanFactory.containsBean(field.getName())) {
-                ReflectionUtils.makeAccessible(field);
-                ReflectionUtils.setField(field, target, beanFactory.getBean(field.getName()));
-                continue;
-            }
-
-            String realClassName = getRealClassName(field.getType());
-
-            RainClientBean rainClientBean = this.createRainClientBean(rainClient);
-            rainClientMap.put(beanName + "-" + realClassName, rainClientBean);
-            ProxyFactory proxyFactory = createFieldProxyFactory(target, field.getType(), field.getName());
-            addProxyFactoryAdvice(proxyFactory, rainClientBean);
-
-            proxyFactory.setFrozen(true);
-            proxyFactory.setProxyTargetClass(true);
-
-            ReflectionUtils.makeAccessible(field);
-            ReflectionUtils.setField(field, target, proxyFactory.getProxy());
-        }
-*/
-
         return bean;
     }
 
@@ -177,13 +108,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
 
                     RouteService.Client client = new RouteService.Client(tProtocol);
 
-                   /*  Object objs[] = invocation.getArguments();
-                   StringBuilder sb = new StringBuilder("");
-                    for (Object obj : objs) {
-                        sb.append(KryoUtil.writeObjectToString(obj) + "@^@");
-                    }*/
                     RainRequest rainRequest = new RainRequest();
-
                     rainRequest.setClassURI(invocation.getMethod().getDeclaringClass().getTypeName());
                     rainRequest.setClassName(invocation.getMethod().getDeclaringClass().getSimpleName());
                     rainRequest.setMethodName(invocation.getMethod().getName());
@@ -198,7 +123,7 @@ public class RainClientBootstrap implements BeanPostProcessor {
                     }
                     rainRequest.setParamList(paramList);
                     RainResponse response = client.execute(rainRequest);
-                    result = KryoUtil.readObjectFromString(response.getResponseBody().getBody(), Class.forName(response.getResponseHead().getClassURI()));
+                    result = KryoUtil.readObjectFromString(response.getResponseBody().getBody(), Class.forName(response.getResponseBody().getClassURI()));
                     break;
                 }
 
@@ -242,20 +167,10 @@ public class RainClientBootstrap implements BeanPostProcessor {
         } else {
             router = new DirectAlgorithm(rainClient.address());
         }
-
         rainClientBean.setRouter(router);
         rainClientBean.setTimeOut(rainClient.timeout());
         rainClientBean.setRetryTiems(rainClient.retryTimes());
-
         return rainClientBean;
-    }
-
-
-    public String getRealClassName(Class<?> clazz) {
-        String className = clazz.getCanonicalName();
-        String name = className.substring(0, className.lastIndexOf("."));
-        logger.info("realClass name method ret old:{},new:{}", className, name);
-        return name;
     }
 
     public Object getTargetBean(Object bean) {
