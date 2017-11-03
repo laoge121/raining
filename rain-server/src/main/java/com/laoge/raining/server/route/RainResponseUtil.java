@@ -14,15 +14,18 @@ public class RainResponseUtil implements Serializable {
 
     /**
      * response 成功
+     *
      * @param object
      * @return
      */
-    public static RainResponse responseSuccess(Object object){
+    public static RainResponse responseSuccess(Object object) {
         RainResponseBody rainResponseBody = new RainResponseBody();
         rainResponseBody.setBody(KryoUtil.writeObjectToString(object));
+        rainResponseBody.setClassName(object.getClass().getName());
+        rainResponseBody.setClassURI(object.getClass().getTypeName());
         RainResponseHead rainResponseHead = new RainResponseHead();
-        rainResponseHead.setClassName(object.getClass().getName());
-        rainResponseHead.setClassURI(object.getClass().getTypeName());
+        rainResponseHead.setCode(0);
+        rainResponseHead.setMessage("");
         RainResponse rainResponse = new RainResponse();
         rainResponse.setResponseBody(rainResponseBody);
         rainResponse.setResponseHead(rainResponseHead);
@@ -31,15 +34,18 @@ public class RainResponseUtil implements Serializable {
 
     /**
      * response 失败
+     *
      * @param object
      * @return
      */
-    public static RainResponse responseError(String object){
+    public static RainResponse responseError(String object) {
         RainResponseBody rainResponseBody = new RainResponseBody();
         rainResponseBody.setBody(object);
+        rainResponseBody.setClassName("String");
+        rainResponseBody.setClassURI("java.lang.String");
         RainResponseHead rainResponseHead = new RainResponseHead();
-        rainResponseHead.setClassName("String");
-        rainResponseHead.setClassURI("java.lang.String");
+        rainResponseHead.setCode(-1);
+        rainResponseHead.setMessage(object);
         RainResponse rainResponse = new RainResponse();
         rainResponse.setResponseBody(rainResponseBody);
         rainResponse.setResponseHead(rainResponseHead);

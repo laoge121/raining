@@ -16,11 +16,13 @@ struct RainRequest {
 }
 
 struct RainResponseHead{
-1:string classURI;
-2:string className;
+1:i64 code;//0表示成功其他值表示失败
+2:string message;
 }
 struct RainResponseBody{
-1:string body;
+1:string classURI;
+2:string className;
+3:string body;
 }
 struct RainResponse {
     1:RainResponseHead responseHead;
