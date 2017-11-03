@@ -6,6 +6,7 @@ import com.laoge.raining.client.router.DirectAlgorithm;
 import com.laoge.raining.client.router.Node;
 import com.laoge.raining.client.router.RibbonAlgorithm;
 import com.laoge.raining.client.router.RouterAlgorithm;
+import com.laoge.raining.common.exception.RainingException;
 import com.laoge.raining.common.route.RainRequest;
 import com.laoge.raining.common.route.RainRequestParam;
 import com.laoge.raining.common.route.RainResponse;
@@ -123,6 +124,9 @@ public class RainClientBootstrap implements BeanPostProcessor {
                     }
                     rainRequest.setParamList(paramList);
                     RainResponse response = client.execute(rainRequest);
+                    if (response.getResponseHead().getCode() != 0) {
+                        throw new RainingException(response.getResponseHead().getMessage(), Long.valueOf(response.getResponseHead().getCode()).intValue());
+                    }
                     result = KryoUtil.readObjectFromString(response.getResponseBody().getBody(), Class.forName(response.getResponseBody().getClassURI()));
                     break;
                 }
